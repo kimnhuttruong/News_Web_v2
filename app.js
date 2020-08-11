@@ -6,7 +6,7 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-app.use('/public', express.static('public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // parse application/json
 app.use(bodyParser.json())
@@ -61,7 +61,7 @@ app.use(function (err, req, res, next) {
   res.status(500).render('500', { layout: false });
 })
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT ||3000;
 
 app.listen(PORT, function () {
   console.log(PORT);
