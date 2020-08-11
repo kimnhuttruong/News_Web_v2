@@ -2,6 +2,7 @@
   "name": "src-express",
   "version": "1.0.0",
   "description": "",
+  "main": "app.js",
   "engines": {
     "node": "v12.16.2"
   }
