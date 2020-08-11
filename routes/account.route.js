@@ -4,12 +4,12 @@ const userModel = require('../models/user.model');
 const commentModel = require('../models/comment.model');
 const loginGoogle = require('../utils/google-util.js');
 var passport = require('passport');
-const { compareSync } = require('bcryptjs');
+const { compareSync } = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
 const restrict = require('../middlewares/auth.mdw');
 const { connect } = require('./_admin.route');
 const { DATETIME_FORMAT } = require('date-format');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const router = express.Router();
 
 
