@@ -1,0 +1,41 @@
+{
+  "name": "src-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap-fileinput": "^5.1.1",
+    "date-format": "^3.0.0",
+    "dateformat": "^3.0.3",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "express-handlebars": "^4.0.3",
+    "express-handlebars-sections": "^1.0.1",
+    "express-session": "^1.17.1",
+    "googleapis": "^52.1.0",
+    "html-pdf": "^2.2.0",
+    "lru-cache": "^5.1.1",
+    "moment": "^2.26.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.8",
+    "nodemon": "^2.0.4",
+    "numeral": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

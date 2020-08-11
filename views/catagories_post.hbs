@@ -1,0 +1,449 @@
+<link rel="icon" href="../public/img/core-img/favicon.ico">
+<link rel="stylesheet" href="../../public/css/master.css" />
+<link rel="stylesheet" href="/public/style.css">
+<header class="header-area">
+    <!-- Top Header Area -->
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header-content d-flex align-items-center justify-content-between">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="/"><img src="../../public/img/core-img/logo.png" alt=""></a>
+                        </div>
+
+                        <!-- Login Search Area -->
+                        <div class="login-search-area d-flex align-items-center">
+                            <!-- Login -->
+                            <div class="login d-flex">
+                                <a href="/account/{{login}}">
+                                    <img src="../../public/img/core-img/no_image.png" alt=""
+                                        style="width:30px;height:30px;">{{upper_login login}}</a>
+                                <a  href="/account/{{#role user.roleid}}{{/role}}" >
+                                    {{#if isURL}}<img src="{{user.img}}" alt="" style="width:30px;height:30px;">
+                                    {{else}}<img src="{{user.img}}" alt=""
+                                        style="width:30px;height:30px;">{{/if}}{{user.username}}</a>
+
+                            </div>
+                            <!-- Search Form -->
+                            <div class="search-form">
+                                <form action="/newspaper/search" method="get">
+                                    <input type="search" class="typeahead tt-query" name="typeahead" placeholder="">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="newspaper-main-menu" id="stickyMenu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="/"><img src="public/img/core-img/logo.png" alt=""></a>
+                    </div>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- close btn -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <nav class="navbar navbar-expand-md">
+                            <div class="container">
+
+                                <button class="navbar-toggler d-none" data-toggle="collapse"
+                                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                                        class="navbar-toggler-icon"></span></button>
+                                <div class="collapse navbar-collapse" id="navcol-1">
+                                    <ul class="nav navbar-nav w-100 justify-content-between">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="/">Trang chủ <span
+                                                    class="sr-only">(current)</span></a>
+                                        </li>
+                                        {{#each this.arrCat}}
+                                        {{#with category as | cat |}}
+                                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link"
+                                                data-toggle="dropdown" aria-expanded="false"
+                                                href="/newspaper/bycate/{{cat.id}}">{{cat.name}}</a>
+                                            <div class="dropdown-menu" role="menu">
+                                                {{#each topic}}
+                                                <a class="dropdown-item" role="presentation"
+                                                    href="/newspaper?cat={{cat.id}}&&topic={{id}}">{{name}}</a>
+                                                {{/each}}
+                                            </div>
+                                        </li>
+                                        {{/with}}
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <!-- Nav End -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ##### Header Area Start ##### -->
+
+<!-- ##### Header Area End ##### -->
+
+<!-- ##### Hero Area Start ##### -->
+
+<!-- ##### Hero Area End ##### -->
+
+<!-- ##### Blog Area Start ##### -->
+<div class="blog-area section-padding-0-80">
+
+    <div class="container">
+        <h4 style="margin: 30px 30px;">Kết quả tìm kiếm: <a style="font-size: 30px;" href="/newspaper?cat={{namecat.id}}">{{namecat.name}}</a> <a style="font-size: 30px;" href="/newspaper?topic={{nametopic.id}}">{{nametopic.name}}</a>  {{nametag}} </h4>
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="blog-posts-area">
+                    <!-- Single Featured Post -->
+                    {{#each items}}
+                    <a style="margin-bottom: 90px;" href="/newspaper/detail/{{id}}">
+                        <div class="single-blog-post featured-post ">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="post-thumb">
+                                        <img src="{{avatar}}" style="width: 220px;height:148px;{{img_premium ispremium ../user.time_premium}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="post-data" style="padding: 0;">
+                                        <a href="/newspaper?topic={{topicid}}" class="post-catagory" style="margin: 0;">{{topic}}</a>
+                                        <a href="/newspaper/detail/{{id}}" class="post-title">
+                                            <h6 style="font-size: 20px;margin:0">{{name}}<span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span></h6>
+                                             <p class="post-date"><span>Ngày đăng: {{format_date time}}  </span></p>
+                                        </a>
+                                        <div class="post-meta">
+                                            <p class="post-author" style="margin: 0;">By <a href="#">{{writer}}</a></p>
+                                            <p class="post-excerp" style="margin: 0;font-size: 11px;">{{desc}}</p>
+
+                                            <div class="d-flex align-items-center" style="margin: 0;">
+                                                {{#each tags}}
+                                                <a style="font-size: 10px;" href="/newspaper?tag={{id}}"
+                                                    class="post-like">
+                                                    <span style="margin:0px;color:#3D7EF1">#{{name}}</span></a>
+                                                {{/each}}
+                                            </div>
+                                            <!-- Post Like & Post Comment -->
+                                            <div class="d-flex align-items-center">
+                                                <a href="/newspaper/detail/{{id}}" class="post-like"><img src="public/img/core-img/eye.png" alt="">
+                                                    <span style="font-size: 12px;">{{view}}</span></a>
+                                                {{!-- <a href="#" class="post-comment"><img src="/public/img/chat.png" alt="">
+                                                    <span style="font-size: 12px;">{{comment}}</span></a> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </a>
+                    {{/each}}
+                </div>
+                {{#if issearch}}
+                <nav aria-label="Page navigation" >
+                    <ul class="pagination justify-content-center" >
+                        <li  class="page-item {{prev.css}}" ><a  class="page-link" onclick="{{prev.onclick}}"
+                                href="/newspaper/search?typeahead={{tag}}&&page=1">&lt;&lt;</a></li>
+                        
+                        <li class="page-item {{prev.css}}">
+                            <a class="page-link " onclick="{{prev.onclick}}"
+                                href="/newspaper/search?typeahead={{tag}}&&page={{#add page -1}}{{/add}}" tabindex="-1">&lt;</a>
+                        </li>
+                        {{#each pages}}
+                        <li class="page-item {{active}}"><a class="page-link"
+                                href="/newspaper/search?typeahead={{../tag}}&&page={{index}}">{{index}}</a></li>
+                        {{/each}}
+                        <li class="page-item {{next.css}}">
+                            <a class="page-link " onclick="{{next.onclick}}"
+                                href="/newspaper/search?typeahead={{tag}}&&page={{#add page 1}}{{/add}}">&gt;</a>
+                        </li>
+                        <li class="page-item {{next.css}}"><a class="page-link" onclick="{{next.onclick}}"
+                                href="/newspaper/search?typeahead={{tag}}&&page={{last}}">&gt;&gt;</a></li>
+                    </ul>
+                </nav>
+                {{else}}
+                {{#if istag}}
+                <nav aria-label="Page navigation" >
+                    <ul class="pagination justify-content-center" >
+                        <li  class="page-item {{prev.css}}" ><a  class="page-link" onclick="{{prev.onclick}}"
+                                href="/newspaper?tag={{tag}}&&page=1">&lt;&lt;</a></li>
+                        
+                        <li class="page-item {{prev.css}}">
+                            <a class="page-link " onclick="{{prev.onclick}}"
+                                href="/newspaper?tag={{tag}}&&page={{#add page -1}}{{/add}}" tabindex="-1">&lt;</a>
+                        </li>
+                        {{#each pages}}
+                        <li class="page-item {{active}}"><a class="page-link"
+                                href="/newspaper?tag={{../tag}}&&page={{index}}">{{index}}</a></li>
+                        {{/each}}
+                        <li class="page-item {{next.css}}">
+                            <a class="page-link " onclick="{{next.onclick}}"
+                                href="/newspaper?tag={{tag}}&&page={{#add page 1}}{{/add}}">&gt;</a>
+                        </li>
+                        <li class="page-item {{next.css}}"><a class="page-link" onclick="{{next.onclick}}"
+                                href="/newspaper?tag={{tag}}&&page={{last}}">&gt;&gt;</a></li>
+                    </ul>
+                </nav>
+                {{!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination mt-50">
+
+                        <a class="btn btn-dark" role="button" href="/newspaper?tag={{tag}}&&page={{prepage}}"
+                            {{#if prepage}} disabled {{/if}} tabindex="-1">Previous</a>
+                        {{#each this.listpage}}
+                        <li class="page-item {{#if active}} active {{/if}}"><a class="page-link"
+                                href="/newspaper?tag={{ tag}}&&page={{page1}}  ">{{page1}}</a></li>
+                        {{/each}}
+                        <a class="btn btn-dark" role="button" href="/newspaper?tag={{tag}}&&page={{nextpage}}">Next</a>
+
+                    </ul>
+                </nav> --}}
+                {{else}}
+                {{!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination mt-50">
+
+                        <a class="btn btn-dark" role="button"
+                            href="/newspaper?cat={{cat}}&&topic={{topic}}&&page={{prepage}}" {{#if prepage}} disabled
+                            {{/if}} tabindex="-1">Previous</a>
+                        {{#each this.listpage}}
+                        <li class="page-item {{#if active}} active {{/if}}"><a class="page-link"
+                                href="/newspaper?cat={{ cat}}&&topic={{topic}}&&page={{page1}}  ">{{page1}}</a></li>
+                        {{/each}}
+                        <a class="btn btn-dark" role="button"
+                            href="/newspaper?cat={{cat}}&&topic={{topic}}&&page={{nextpage}}">Next</a>
+
+                    </ul>
+                </nav> --}}
+                <nav aria-label="Page navigation example" >
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {{prev.css}}"><a class="page-link" onclick="{{prev.onclick}}"
+                                    href="/newspaper?cat={{cat}}&&topic={{topic}}&&page=1"> &lt;&lt;</a></li>
+                            <li class="page-item {{prev.css}}">
+                                <a class="page-link " onclick="{{prev.onclick}}"
+                                    href="//newspaper?cat={{cat}}&&topic={{topic}}&&page={{#add page -1}}{{/add}}"
+                                    tabindex="-1"> &lt;</a>
+                            </li>
+                            {{#each pages}}
+                            <li class="page-item {{active}}"><a class="page-link"
+                                    href="/newspaper?cat={{../cat}}&&topic={{../topic}}&&page={{index}}">{{index}} </a></li>
+                            {{/each}}
+                            <li class="page-item {{next.css}}">
+                                <a class="page-link " onclick="{{next.onclick}}"
+                                    href="/newspaper?cat={{cat}}&&topic={{topic}}&&page={{#add page 1}}{{/add}}">&gt;</a>
+                            </li>
+                            <li class="page-item {{next.css}}"><a class="page-link" onclick="{{next.onclick}}"
+                                    href="/newspaper?cat={{cat}}&&topic={{topic}}&&page={{last}}">&gt;&gt;</a></li>
+                        </ul>
+                    </nav>
+                {{/if}}
+                {{/if}}
+
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="blog-sidebar-area">
+
+                    <!-- Latest Posts Widget -->
+                    <div class="latest-posts-widget mb-50">
+                        {{#each listtopnews}}
+                        <!-- Single Featured Post -->
+                        <div class="single-blog-post small-featured-post d-flex">
+                            <div class="post-thumb">
+                                <a href="/newspaper/detail/{{id}}"><img src="{{avatar}}" alt="link la j" style=" {{img_premium ispremium ../user.time_premium}};" ></a>
+                            </div>
+                            <div class="post-data">
+                                <a href="/newspaper?topic={{topicid}}" class="post-catagory">{{t_name}}</a>
+                                <div class="post-meta">
+                                    <a href="/newspaper/detail/{{id}}" class="post-title">
+                                        <h6>{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span></h6>
+                                    </a>
+                                    <p class="post-date"><span>{{format_date time}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<class class="footer-area" style="background-color: #02031C;">
+  <div class="main-footer-area">
+    <div class="container" style="background-color: #02031C;">
+      <div class="row">
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-widget-area mt-80">
+            <!-- Footer Logo -->
+            <div class="footer-logo">
+              <a href="index.html"><img src="/public/img/core-img/logo.png" alt=""></a>
+            </div>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="mailto:contact@youremail.com">teamTTTA@gmail.com</a></li>
+              <li style="padding: 0; margin: 0;"><a href="tel:+4352782883884">+84 3834 63777</a></li>
+              <li style="padding: 0; margin: 0;"><a href="http://yoursitename.com">www.teamTTTA.com</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-2">
+          <div class="footer-widget-area mt-80" style="font-size: 30px;">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">Politics</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Business</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Markets</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Tech</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Luxury</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-4 col-lg-2">
+          <div class="footer-widget-area mt-80">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">Featured</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Football</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Golf</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Tennis</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Motorsport</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Horseracing</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Equestrian</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Sailing</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Skiing</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-4 col-lg-2">
+          <div class="footer-widget-area mt-80">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">FAQ</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Aviation</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Business</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Traveller</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Destinations</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Features</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Food/Drink</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Hotels</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Partner Hotels</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-4 col-lg-2">
+          <div class="footer-widget-area mt-80">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">+More</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Fashion</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Design</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Architecture</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Arts</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Autos</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Luxury</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Footer Area -->
+  <div class="bottom-footer-area">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center" style="background-color: #02031C;">
+        <div class="col-12">
+          <!-- Copywrite -->
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved |
+            Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+              target="_blank">TTTA Team</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</class>
+<!-- .footer-->
+
+<!-- end layout-theme-->
+
+
+<!-- ++++++++++++-->
+<!-- MAIN SCRIPTS-->
+<!-- ++++++++++++-->
+<script src="/public/libs/jquery-1.12.4.min.js"></script>
+<script src="/public/libs/jquery-migrate-1.2.1.js"></script>
+<script src="/public/libs/modernizr.custom.js"></script>
+<!-- Bootstrap-->
+<script src="/public/libs/bootstrap/bootstrap.min.js"></script>
+<!-- User customization-->
+<script src="/public/js/custom.js"></script>
+<!-- Slider-->
+<script src="/public/plugins/owl-carousel/owl.carousel.min.js"></script>
+<!-- Pop-up window-->
+<script src="/public/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Headers scripts-->
+{{!-- <script src="/public/plugins/headers/jquery.dlmenu.js"></script>
+<script src="/public/plugins/headers/slidebar.js"></script>
+<script src="/public/plugins/headers/header.js"></script> --}}
+<!-- Mail scripts-->
+<script src="/public/plugins/jqBootstrapValidation.js"></script>
+<script src="/public/plugins/contact_me.js"></script>
+<!-- Video player-->
+<script src="/public/plugins/flowplayer/flowplayer.min.js"></script>
+<!-- Filter and sorting images-->
+<script src="/public/plugins/isotope/isotope.pkgd.min.js"></script>
+<script src="/public/plugins/isotope/imagesLoaded.js"></script>
+<!-- Progress numbers-->
+<script src="/public/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="/public/plugins/rendro-easy-pie-chart/waypoints.min.js"></script>
+<!-- Animations-->
+<script src="/public/plugins/scrollreveal/scrollreveal.min.js"></script>
+<!-- Ticker-->
+<script src="/public/plugins/jquery-easy-ticker/jquery.easy-ticker.min.js"></script>
+<script src="public/js/active.js"></script>
+<script src="../../public/js/home_script.js"></script>

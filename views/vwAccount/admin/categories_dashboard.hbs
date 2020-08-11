@@ -1,0 +1,96 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+
+<div class="right_col" role="main">
+    <div class="title_left">
+        <h3>Categories</h3>
+    </div>
+
+    <div class="clearfix">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="x_content">
+
+                    <div class="clearfix"></div>
+                    <a class="btn btn-primary " href="./addcategory" role="button" title="edit">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Thêm Danh Mục
+                    </a>
+                    </br>
+                    <table class="js-dynamitable     table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Action </th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {{#each data}}
+                            <tr>
+                                <td>{{id}}</td>
+                                <td>{{name}}</td>
+                                <td class="text-right">
+
+                                    <a class="btn btn-danger btn-sm" href="./deletecategory/{{id}}" role="button"
+                                        title="Delete">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                    <a class="btn btn-primary btn-sm" href="./editcategory/{{id}}" role="button"
+                                        title="Edit">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {{prev.css}}"><a class="page-link" onclick="{{prev.onclick}}"
+                                    href="/account/admin/categories?page=1">First</a></li>
+                            <li class="page-item {{prev.css}}">
+                                <a class="page-link " onclick="{{prev.onclick}}"
+                                    href="/account/admin/categories?page={{#add page -1}}{{/add}}"
+                                    tabindex="-1">Previous</a>
+                            </li>
+                            {{#each pages}}
+                            <li class="page-item {{active}}"><a class="page-link"
+                                    href="/account/admin/categories?page={{index}}">{{index}}</a></li>
+                            {{/each}}
+                            <li class="page-item {{next.css}}">
+                                <a class="page-link " onclick="{{next.onclick}}"
+                                    href="/account/admin/categories?page={{#add page 1}}{{/add}}">Next</a>
+                            </li>
+                            <li class="page-item {{next.css}}"><a class="page-link" onclick="{{next.onclick}}"
+                                    href="/account/admin/categories?page={{last}}">Last</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,270 @@
+{{#section 'css'}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+{{/section}}
+
+
+
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'js'}}
+<script src="https://cdn.tiny.cloud/1/7ct4to6eiu7hhb74pjhbs7vhhbcouhvo5ee9elshc8tzxoxy/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/G7KfsxY2I5O3459D37LzImaA/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+<script>
+  tinymce.init({
+    selector: '#txtFullDes',
+    height: 450,
+    plugins: 'paste image link autolink lists table media',
+    menubar: false,
+    toolbar: [
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+    ],
+  });
+</script>
+
+
+<script>
+  $(document).ready(function () {
+    $('#catid').on('change', function () {
+      $("#opid").remove();
+      $('#topicid').find('option:selected').remove();
+      {{#each topic }}
+      $("#opid").remove();
+      {{/each}}
+      {{#each cats}}
+
+      if ({{ id }}== $('#catid').val()){
+
+          {{#each topic }}
+          $("#topicid").append('<option id="opid" value={{id}}>{{name}}</option>');
+          {{/each}}
+        }
+        {{/each}}
+          });
+
+
+  var url1 = "https://atpmedia.vn/wp-content/uploads/2019/12/C%C3%A1ch-s%E1%BB%AD-d%E1%BB%A5ng-th%E1%BA%BB-IMG.jpg";
+  $("#input-24").fileinput({
+    initialPreview: [url1],
+    initialPreviewAsData: true,
+    initialPreviewConfig: [
+      { caption: "{{img}}", downloadUrl: url1, size: 930321, width: "120px", },
+    ],
+
+
+    maxFileSize: 5000,
+    allowedFileExtensions: ["jpg", "gif", "png", "txt"]
+  });
+});
+
+
+
+</script>
+<!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/css/fileinput.min.css" media="all"
+  rel="stylesheet" type="text/css" />
+<!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+<!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+{{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+<!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you 
+    wish to resize images before upload. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/plugins/piexif.min.js"
+  type="text/javascript"></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+    This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/plugins/sortable.min.js"
+  type="text/javascript"></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
+    HTML files. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/plugins/purify.min.js"
+  type="text/javascript"></script>
+<!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
+   3.3.x versions without popper.min.js. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
+    dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<!-- the main fileinput plugin file -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/fileinput.min.js"></script>
+<!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/themes/fa/theme.js"></script>
+<!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/locales/(lang).js"></script>
+<!-- page content -->
+{{/section}}
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left col-md-12">
+        <h3>Bài viết mới</h3>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_content">
+              <br />
+              <div class="col-md-9 col-xs-9">
+                <form class="form-horizontal form-label-left" method="POST" id="frmWriter" enctype="multipart/form-data"
+                  action="/account/writer/news/update/{{this.dataNews.id}}">
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">id</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <input type="text" name="id" class="form-control" readonly value="{{this.dataNews.id}}">
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Tiêu đề</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <input type="text" name="name" class="form-control" value="{{this.dataNews.name}}">
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Mô tả</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <input type="text" name="desc" class="form-control" value="{{this.dataNews.desc}}">
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Nội dung</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <div class="form-group">
+                        <textarea id="txtFullDes" name="detail" class="form-control" cols="30"
+                          rows="10">{{this.dataNews.detail}}</textarea>
+                      </div>
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Premium</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <input type="checkbox" name="ispremium" id="ispremium">
+                      <input type="hidden" name="ispremium" value=0>
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Category</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <select class="js-filter  form-control" id="catid">
+                        {{#each cats}}
+                        <option value="{{id}}" {{#equalTopic id ../catid}}{{/equalTopic}}>{{name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Chủ đê</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <select class="js-filter  form-control" name="topicid" id="topicid">
+                        {{#each topic}}
+
+                        <option id="opid" value="{{id}}" {{#equalTopic id ../dataNews.topicid}} {{/equalTopic}}>{{name}}
+                        </option>
+
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Tags</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <input id="tag" data-role="tagsinput" name="tag" class="form-control"
+                        value="{{nameTags}}"></input>
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  {{#each role}}
+                  <div class=" form-group">
+                  <label class="control-label col-md-1 col-sm-1 col-xs-12">Time</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="datetime-local" class="form-control" id="time" name="time" value="{{../this.dataNews.time}}">
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Status</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                      <select class="js-filter  form-control" name="statusid" id="statusid">
+                      <option value="4" {{#active_role ../this.dataNews.statusid 4}}{{/active_role}}>Chưa được duyệt </option>
+                      <option value="1" {{#active_role ../this.dataNews.statusid 1}}{{/active_role}}>Đã được duyệt & chờ xuất bản
+                      </option>../
+                      <option value="2" {{#active_role ../this.dataNews.statusid 2}}{{/active_role}}>Đã xuất bản</option>
+                      <option value="3" {{#active_role ../this.dataNews.statusid 3}}{{/active_role}}>Bị từ chối</option>
+                    </select>
+                      </select>
+                    </div>
+                  </div>
+                  {{/each}}
+                  <div class="form-group">
+                    <label class="control-label col-md-1 col-sm-1 col-xs-12">Chú thích</label>
+                    <div class="col-md-11 col-sm-11 col-xs-12">
+                      <input type="text" name="note" class="form-control" value="{{this.dataNews.note}}">
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-5">
+                      <button type="reset" class="btn btn-primary">Làm mới</button>
+                      <button type="submit" class="btn btn-success" formaction="">Cập nhật</button>
+                    </div>
+                    <div class="control-label col-md-3 col-sm-3 col-xs-12"></div>
+                  </div>
+
+                </form>
+              </div>
+              <div class="col-md-3 col-xs-3">
+                <br>
+                <button type="button" class="btn btn-primary">
+                  <a href="/account/writer/view/newspaper/upload_img" style="color: aliceblue;">Đăng ảnh</a>
+                </button>
+                <br>
+                <h2> Ảnh của bạn</h2>
+                <div class="container" style="height:800px; overflow: scroll;">
+                  {{#each this.images}}
+                  <div class="col-md-6">
+
+                    <div class="container">
+                      <div class="col-xs-3">
+                        <div class="card-group">
+                          <img class="card-img-top" style="width: auto; height:100px"
+                            src="../../../../public/uploads/{{name}}" alt="{{name}}">
+                          <div class="card-body">
+                            <p style="font-size: 8px;" class="card-text">{{format_new_desc name}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+  </div>
+
+  <!-- /page content -->

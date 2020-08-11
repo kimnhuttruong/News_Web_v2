@@ -1,0 +1,60 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Edit Topic</h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="x_content">
+                            <br />
+                            <form action="/account/admin/addtopic" class="form-horizontal form-label-left"
+                                method="POST">
+                                {{#each data}}
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">ID</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input readonly type="text"  class="form-control" value="{{id}}">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Category </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="js-filter  form-control " name="catid" id="catid" >
+                                            {{#each ../category}}
+                                                <option value="{{id}}"  {{#active_role ../catid id }}{{/active_role}}>{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                        {{!-- <input type="text" class="form-control" name="username"
+                                            value="{{#role roleid}}{{/role}}"> --}}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" name="name" class="form-control" value="{{name}}">
+                                    </div>
+                                </div>
+                                {{/each}}
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <a class="btn btn-primary" href="/account/admin/topics" role="button">Back</a>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+</div>

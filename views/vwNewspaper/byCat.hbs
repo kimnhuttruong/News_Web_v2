@@ -1,0 +1,404 @@
+<link rel="stylesheet" href="/public/style.css">
+<header class="header-area">
+  <!-- Top Header Area -->
+  <div class="top-header-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="top-header-content d-flex align-items-center justify-content-between">
+            <!-- Logo -->
+            <div class="logo">
+              <a href="/"><img src="../../public/img/core-img/logo.png" alt=""></a>
+            </div>
+
+            <!-- Login Search Area -->
+            <div class="login-search-area d-flex align-items-center">
+              <!-- Login -->
+              <div class="login d-flex">
+                <a href="/account/{{login}}">
+                  <img src="../../public/img/core-img/no_image.png" alt=""
+                    style="width:30px;height:30px;">{{upper_login login}}</a>
+                <a href="/account/{{#role user.roleid}}{{/role}}">
+                  {{#if isURL}}<img src="{{user.img}}" alt="" style="width:30px;height:30px;">
+                  {{else}}<img src="../public/uploads/{{user.img}}" alt=""
+                    style="width:20px;height:20px;">{{/if}}{{user.username}}</a>
+
+              </div>
+              <!-- Search Form -->
+              <div class="search-form">
+                <form action="#" method="post">
+                  <input type="search" name="search" class="form-control" placeholder="Search">
+                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar Area -->
+  <div class="newspaper-main-menu" id="stickyMenu">
+    <div class="classy-nav-container breakpoint-off">
+      <div class="container">
+        <!-- Menu -->
+        <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/"><img src="public/img/core-img/logo.png" alt=""></a>
+          </div>
+
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu">
+
+            <!-- close btn -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+
+            <!-- Nav Start -->
+            <nav class="navbar-expand-md">
+              <div class="container">
+
+                <button class="navbar-toggler d-none" data-toggle="collapse" data-target="#navcol-1"><span
+                    class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                  <ul class="nav navbar-nav w-100 justify-content-between">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/">Trang chủ <span class="sr-only">(current)</span></a>
+                    </li>
+                    {{#each this.arrCat}}
+                    {{#with category as | cat |}}
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                        aria-expanded="false" href="/newspaper/byCat/{{cat.id}}">{{cat.name}}</a>
+                      <div class="dropdown-menu" role="menu">
+                        {{{print_topic cat.topic}}}
+                      </div>
+                    </li>
+                    {{/with}}
+                    {{/each}}
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <!-- Nav End -->
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<link rel="stylesheet" href="/public/css/master.css" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="l-main-content l-main-content_mrg-right_minus">
+        <div class="posts-group">
+          {{#each this.new}}
+            <article class="b-post b-post_main clearfix">
+            <div class="entry-media img-hover-effect"><img class="img-responsive"
+                src="../public/images/news/{{id}}/avatar.jpg" alt="{{name}}" /></div>
+            <div class="entry-main">
+              <div class="entry-header">
+                <h2 class="entry-title">{{name}}</h2>
+              </div>
+              <div class="entry-content">
+                <p>{{desc}}</p>
+              </div>
+              <div class="entry-footer"><a class="btn-bd-primary" href="/newspaper/detail/{{id}}">read more</a>
+                <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link"
+                      href="blog-main.html"><strong>{{format_date time}}</strong></a></span><span class="entry-meta__item"><i
+                      class="icon fa fa-heart-o text-second"></i><a class="entry-meta__link"
+                      href="blog-main.html">50</a></span><span class="entry-meta__item"><i
+                      class="icon fa fa-comment-o text-primary"></i><a class="entry-meta__link"
+                      href="blog-main.html">29</a></span>
+                </div>
+              </div>
+            </div>
+          </article>
+          {{/each}}
+         
+          <!-- end .post-->
+        </div>
+        <ul class="pagination text-center">
+          <li><a href="?page={{prev_value}}"><i class="icon pe-7s-angle-left {{#unless can_go_prev}}disabled{{/unless}}" ></i></a></li>
+           {{#each this.page_items}}
+          {{#if isActive}}
+          <li>
+         <li class="page-item active" aria-current="page">
+          <span class="icon pe-7s-angle-left">
+            {{value}}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+          {{else}}
+        <li class="page-item {{#if isDisabled}}disabled{{/if}}">
+          <a class="page-link" href="?page={{value}}">{{value}}</a>
+        </li>
+        {{/if}}
+        {{/each}}
+        
+          <li><a href="?page={{next_value}}"><i class="icon pe-7s-angle-right {{#unless can_go_next}}disabled{{/unless}}" ></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <aside class="l-sidebar l-sidebar_mrg-left l-sidebar_first-section">
+        {{!-- <div class="widget widget-searce">
+          <form class="form-sidebar" id="search-global-form">
+            <input class="form-sidebar__input form-control" type="text" placeholder="Search..." />
+            <button class="form-sidebar__btn"><i class="icon fa fa-search"></i></button>
+          </form>
+        </div> --}}
+        <!-- end .widget-->
+        <div class="widget">
+          {{!-- <div class="text-center"><a class="b-banner b-banner-5" href="home.html"><img
+                class="center-block img-responsive" src="/public/media/components/b-banners/banner-7.jpg"
+                alt="foto" /></a>
+            <!-- end .b-banner-->
+          </div> --}}
+        </div>
+        <section class="widget section-sidebar">
+          <h2 class="widget-title ui-title-inner ui-title-inner_condensed"><span
+              class="ui-title-inner__inner">Chuyên mục</span></h2>
+          <div class="widget-content">
+            <ul class="widget-list widget-list_white list list-mark-4">
+               {{#each lcCategories}}
+              <li class="widget-list__item"><a class="widget-list__link {{#if isActive}}active{{/if}}" href="../bycat/{{id}}">
+              {{name}}
+          {{#if this.num_of_new}}
+              <span class="badge">{{num_of_new}}</span>
+              </a>
+              {{/if}}
+              </li>
+                
+              {{/each}} 
+            </ul>
+          </div> 
+        </section>
+        <!-- end .widget-->
+        <ction class="widget section-sidebar">
+          <h2 class="widget-title ui-title-inner"><span class="ui-title-inner__inner">thông tin mới</span></h2>
+          <div class="widget-content">
+            {{#each this.listRight}}
+            <section class="b-post b-post_img-left b-post_img-100 b-post_img-100_mod-a clearfix">
+              <div class="entry-media img-hover-effect"><a class="js-zoom-images img-hover-effect"
+                  href=""><img class="img-responsive hov-scal"
+                    src="pulic/images/news/{{id}}/avatar.jpg" alt="Hình đúng nhé" /></a></div>
+              <div class="entry-main">
+                <div class="entry-header">
+                  <h2 class="entry-title"><a href="../detail/{{id}}">{{name}}</a></h2>
+                  <p class="entry-title"><a href="../bycat/{{t_id}}">#{{t_name}}</a></p>
+                  <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link"
+                        href="../detail/{{id}}"><strong>{{format_date time}}</strong></a></span><span class="entry-meta__item"><i
+                        class="icon fa fa-comment-o text-primary"></i><a class="entry-meta__link"
+                        href="../detail/{{id}}">Bình luận</a></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+              
+            {{/each}}
+            <!-- end .post-->
+          
+        <!-- end .widget-->
+        <section class="widget section-sidebar">
+          <h2 class="widget-title ui-title-inner"><span class="ui-title-inner__inner">our tags</span></h2>
+          <div class="widget-content">
+            <ul class="list-tags list-tags_grey list-unstyled">
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">{{this.new.tags}}</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">People</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">Health</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">Magazine</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">World
+                  News</a></li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">Fashion</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">Trends</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">Design</a>
+              </li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default"
+                  href="blog-main.html">Al-jazeera</a></li>
+              <li class="list-tags__item"><a class="list-tags__link btn btn-default" href="blog-main.html">Wild
+                  Nature</a></li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+      <!-- end .sidebar-->
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer__main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="footer-section"><a class="footer__logo" href="home.html"><img class="img-responsive"
+                src="/public/media/general/logo-footer.png" alt="Logo" /></a>
+            <div class="footer__info">
+              <p>Lorem ipsum dolor amet consecteu adipisicing sed do eiusmod tempor incididunt labore dolore magna
+                aliqua enimad minim tempor incididunt labore et dolore magna aliqua.</p>
+            </div>
+            <div class="footer__contact"><i class="icon fa fa-location-arrow"></i> 36 Canal Society, Victoria ML 00789
+            </div>
+            <div class="footer__contact"><i class="icon fa fa-phone"></i> +01 234 5678 / 0800 123.9876</div>
+            <div class="footer__contact"><i class="icon fa fa-envelope"></i> contact@domain.com</div>
+            <ul class="social-net list-inline">
+              <li class="social-net__item"><a class="social-net__link text-primary_h" href="twitter.com"><i
+                    class="icon fa fa-twitter"></i></a></li>
+              <li class="social-net__item"><a class="social-net__link text-primary_h" href="facebook.com"><i
+                    class="icon fa fa-facebook"></i></a></li>
+              <li class="social-net__item"><a class="social-net__link text-primary_h" href="plus.google.com"><i
+                    class="icon fa fa-google-plus"></i></a></li>
+              <li class="social-net__item"><a class="social-net__link text-primary_h" href="youtube-play.com"><i
+                    class="icon fa fa-youtube-play"></i></a></li>
+              <li class="social-net__item"><a class="social-net__link text-primary_h" href="rss.com"><i
+                    class="icon fa fa-rss"></i></a></li>
+            </ul>
+            <!-- end .social-list-->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <section class="footer-section">
+            <h3 class="footer-section__title ui-title-inner ui-title-inner_condensed"><span
+                class="ui-title-inner__inner">recent posts</span></h3>
+            <section class="b-post b-post_img-left b-post_light b-post_img-100 clearfix">
+              <div class="entry-media img-hover-effect"><a class="js-zoom-images img-hover-effect"
+                  href="/public/media/content/posts/100x80/1.jpg"><img class="img-responsive hov-scal"
+                    src="/public/media/content/posts/100x80/1.jpg" alt="Foto" /></a></div>
+              <div class="entry-main">
+                <div class="entry-header">
+                  <h2 class="entry-title"><a href="blog-post.html">Equip exea comodas rue nsew uat duis ipsum</a></h2>
+                  <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link"
+                        href="blog-main.html"><strong>march 8, 2017</strong></a></span><span class="entry-meta__item"><i
+                        class="icon fa fa-comment-o text-primary"></i><a class="entry-meta__link"
+                        href="blog-main.html">29</a></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- end .post-->
+            <section class="b-post b-post_img-left b-post_light b-post_img-100 clearfix">
+              <div class="entry-media img-hover-effect"><a class="js-zoom-images img-hover-effect"
+                  href="/public/media/content/posts/100x80/2.jpg"><img class="img-responsive hov-scal"
+                    src="/public/media/content/posts/100x80/2.jpg" alt="Foto" /></a></div>
+              <div class="entry-main">
+                <div class="entry-header">
+                  <h2 class="entry-title"><a href="blog-post.html">Lorem ipsum dolor sit do amet elit spa eiusmod</a>
+                  </h2>
+                  <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link"
+                        href="blog-main.html"><strong>june 30, 2017</strong></a></span><span class="entry-meta__item"><i
+                        class="icon fa fa-comment-o text-primary"></i><a class="entry-meta__link"
+                        href="blog-main.html">14</a></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- end .post-->
+            <section class="b-post b-post_img-left b-post_light b-post_img-100 clearfix">
+              <div class="entry-media img-hover-effect"><a class="js-zoom-images img-hover-effect"
+                  href="/public/media/content/posts/100x80/3.jpg"><img class="img-responsive hov-scal"
+                    src="/public/media/content/posts/100x80/3.jpg" alt="Foto" /></a></div>
+              <div class="entry-main">
+                <div class="entry-header">
+                  <h2 class="entry-title"><a href="blog-post.html">Exercitation ullamco ca laboris nisi ut aliquip ex
+                      ea</a></h2>
+                  <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link"
+                        href="blog-main.html"><strong>august 25, 2017</strong></a></span><span
+                      class="entry-meta__item"><i class="icon fa fa-comment-o text-primary"></i><a
+                        class="entry-meta__link" href="blog-main.html">14</a></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- end .post-->
+          </section>
+        </div>
+        <div class="col-md-4">
+          <section class="footer-section">
+            <h3 class="footer-section__title ui-title-inner ui-title-inner_condensed"><span
+                class="ui-title-inner__inner">Latest images</span></h3>
+            <div class="owl-carousel owl-theme owl-theme_control-center owl-theme_control-dark enable-owl-carousel"
+              data-pagination="false" data-navigation="true" data-single-item="true" data-auto-play="7000"
+              data-transition-style="fade" data-main-text-animation="true" data-after-init-delay="3000"
+              data-after-move-delay="1000" data-stop-on-hover="true"><img
+                src="/public/media/content/gallery/360x300_1.jpg" alt="foto" /><img
+                src="/public/media/content/gallery/360x300_1.jpg" alt="foto" /><img
+                src="/public/media/content/gallery/360x300_1.jpg" alt="foto" /></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="copyright-list list-inline">
+            <li class="copyright-list__item"><a class="copyright-list__link" href="terms-of-use.html">Terms</a></li>
+            <li class="copyright-list__item"><a class="copyright-list__link" href="privacy-policy.html">Privacy
+                Policy</a></li>
+            <li class="copyright-list__item"><a class="copyright-list__link" href="about.html">About us</a></li>
+            <li class="copyright-list__item"><a class="copyright-list__link" href="contact.html">Contact</a></li>
+          </ul><span class="copyright__info">© 2017<strong> PRO NEWSPAPER</strong> ® All Right Reserved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- .footer-->
+</div>
+<!-- end layout-theme-->
+
+
+<!-- ++++++++++++-->
+<!-- MAIN SCRIPTS-->
+<!-- ++++++++++++-->
+<script src="/public/libs/jquery-1.12.4.min.js"></script>
+<script src="/public/libs/jquery-migrate-1.2.1.js"></script>
+<script src="/public/libs/modernizr.custom.js"></script>
+<!-- Bootstrap-->
+<script src="/public/libs/bootstrap/bootstrap.min.js"></script>
+<!-- User customization-->
+<script src="/public/js/custom.js"></script>
+<!-- Slider-->
+<script src="/public/plugins/owl-carousel/owl.carousel.min.js"></script>
+<!-- Pop-up window-->
+<script src="/public/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Headers scripts-->
+<script src="/public/plugins/headers/jquery.dlmenu.js"></script>
+<script src="/public/plugins/headers/slidebar.js"></script>
+<script src="/public/plugins/headers/header.js"></script>
+<!-- Mail scripts-->
+<script src="/public/plugins/jqBootstrapValidation.js"></script>
+<script src="/public/plugins/contact_me.js"></script>
+<!-- Video player-->
+<script src="/public/plugins/flowplayer/flowplayer.min.js"></script>
+<!-- Filter and sorting images-->
+<script src="/public/plugins/isotope/isotope.pkgd.min.js"></script>
+<script src="/public/plugins/isotope/imagesLoaded.js"></script>
+<!-- Progress numbers-->
+<script src="/public/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="/public/plugins/rendro-easy-pie-chart/waypoints.min.js"></script>
+<!-- Animations-->
+<script src="/public/plugins/scrollreveal/scrollreveal.min.js"></script>
+<!-- Ticker-->
+<script src="/public/plugins/jquery-easy-ticker/jquery.easy-ticker.min.js"></script>

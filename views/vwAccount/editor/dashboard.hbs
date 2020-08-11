@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/public/dashboard/production/images/favicon.ico" type="image/ico" />
+  <!-- Bootstrap -->
+  <link href="/public/dashboard/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="/public/dashboard/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="/public/dashboard/nprogress/nprogress.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="/public/dashboard/iCheck/skins/flat/green.css" rel="stylesheet">
+
+  <!-- bootstrap-progressbar -->
+  <link href="/public/dashboard/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+  <!-- JQVMap -->
+  <link href="/public/dashboard/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+  <!-- bootstrap-daterangepicker -->
+  <link href="/public/dashboard/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="/public/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <a href="./profile">
+            <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2>John Doe</h2>
+            </div>
+          </div>
+        </a>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>General</h3>
+              <ul class="nav side-menu">
+                <li><a href="/"><i class="fa fa-home"></i> Home </span></a>
+                </li>
+                <li><a href="./view"><i class="fa fa-table"></i> View </a>
+                </li>
+           
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="/account/login">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="/public/dashboard/production/images/img.jpg" alt="">John Doe
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li><a href="/account/profile"> Profile</a></li>
+
+                  <li><a href="javascript:;">Help</a></li>
+                  <li><a href="/account/login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                </ul>
+              </li>
+
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <!-- top tiles -->
+        <div class="row tile_count">
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Writers</span>
+            <div class="count">{{total_user}}</div>
+          </div>
+
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total News</span>
+            <div class="count">{{total_new}}</div>
+          </div>
+
+        </div>
+        <!-- /top tiles -->
+
+        <div class="row">
+
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+              <div class="x_title">
+                <h2>Top 5 Rating</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <h4>App Usage across versions</h4>
+                <div class="widget_summary">
+                  <div class="w_left w_25">
+                    <span>0.1.5.2</span>
+                  </div>
+                  <div class="w_center w_55">
+                    <div class="progress">
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 66%;">
+                        <span class="sr-only">60% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w_right w_20">
+                    <span>123k</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget_summary">
+                  <div class="w_left w_25">
+                    <span>0.1.5.3</span>
+                  </div>
+                  <div class="w_center w_55">
+                    <div class="progress">
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 45%;">
+                        <span class="sr-only">60% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w_right w_20">
+                    <span>53k</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget_summary">
+                  <div class="w_left w_25">
+                    <span>0.1.5.4</span>
+                  </div>
+                  <div class="w_center w_55">
+                    <div class="progress">
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 25%;">
+                        <span class="sr-only">60% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w_right w_20">
+                    <span>23k</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget_summary">
+                  <div class="w_left w_25">
+                    <span>0.1.5.5</span>
+                  </div>
+                  <div class="w_center w_55">
+                    <div class="progress">
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 5%;">
+                        <span class="sr-only">60% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w_right w_20">
+                    <span>3k</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget_summary">
+                  <div class="w_left w_25">
+                    <span>0.1.5.6</span>
+                  </div>
+                  <div class="w_center w_55">
+                    <div class="progress">
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 2%;">
+                        <span class="sr-only">60% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w_right w_20">
+                    <span>1k</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320 overflow_hidden">
+              <div class="x_title">
+                <h2>Top 5 </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="" style="width:100%">
+                  <tr>
+                    <th style="width:37%;">
+                      <p>Top 5</p>
+                    </th>
+                    <th>
+                      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <p class="">Device</p>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <p class="">Progress</p>
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i>IOS </p>
+                          </td>
+                          <td>30%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square green"></i>Android </p>
+                          </td>
+                          <td>10%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i>Blackberry </p>
+                          </td>
+                          <td>20%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square aero"></i>Symbian </p>
+                          </td>
+                          <td>15%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square red"></i>Others </p>
+                          </td>
+                          <td>30%</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Recent Activities <small>Sessions</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="dashboard-widget-content">
+
+                  <ul class="list-unstyled timeline widget">
+                    <li>
+                      <div class="block">
+                        <div class="block_content">
+                          <h2 class="title">
+                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                          </h2>
+                          <div class="byline">
+                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                          </div>
+                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were
+                            where you met the producers that could fund your project, and if the buyers liked your
+                            flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="block">
+                        <div class="block_content">
+                          <h2 class="title">
+                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                          </h2>
+                          <div class="byline">
+                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                          </div>
+                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were
+                            where you met the producers that could fund your project, and if the buyers liked your
+                            flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="block">
+                        <div class="block_content">
+                          <h2 class="title">
+                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                          </h2>
+                          <div class="byline">
+                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                          </div>
+                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were
+                            where you met the producers that could fund your project, and if the buyers liked your
+                            flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="block">
+                        <div class="block_content">
+                          <h2 class="title">
+                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                          </h2>
+                          <div class="byline">
+                            <span>13 hours ago</span> by <a>Jane Smith</a>
+                          </div>
+                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were
+                            where you met the producers that could fund your project, and if the buyers liked your
+                            flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="/public/dashboard/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="/public/dashboard/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- FastClick -->
+  <script src="/public/dashboard/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="/public/dashboard/nprogress/nprogress.js"></script>
+  <!-- Chart.js -->
+  <script src="/public/dashboard/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/public/dashboard/gauge.js/dist/gauge.min.js"></script>
+  <!-- bootstrap-progressbar -->
+  <script src="/public/dashboard/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+  <!-- iCheck -->
+  <script src="/public/dashboard/iCheck/icheck.min.js"></script>
+  <!-- Skycons -->
+  <script src="/public/dashboard/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/public/dashboard/Flot/jquery.flot.js"></script>
+  <script src="/public/dashboard/Flot/jquery.flot.pie.js"></script>
+  <script src="/public/dashboard/Flot/jquery.flot.time.js"></script>
+  <script src="/public/dashboard/Flot/jquery.flot.stack.js"></script>
+  <script src="/public/dashboard/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/public/dashboard/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/public/dashboard/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/public/dashboard/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/public/dashboard/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/public/dashboard/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/public/dashboard/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/public/dashboard/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="/public/dashboard/moment/min/moment.min.js"></script>
+  <script src="/public/dashboard/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+  <!-- Custom Theme Scripts -->
+  <script src="/public/build/js/custom.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>User Profile</h3>
+      </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>User Report <small>Activity report</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+                    class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Settings 1</a>
+                  </li>
+                  <li><a href="#">Settings 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-12 col-sm-12 col-xs-12 profile_left">
+              <div class="profile_img">
+                <div id="crop-avatar">
+                  <!-- Current avatar -->
+                  <img class="img-responsive avatar-view img-rounded" width="300" src="{{info.img}}"
+                    alt="Avatar" title="Change the avatar">
+                </div>
+              </div>
+              <h3>{{info.username}}</h3>
+              <ul class="list-unstyled user_data">
+                <li><i class="fa fa-envelope user-profile-icon"></i> &nbsp;&nbsp;&nbsp;{{info.email}}
+                </li>
+                <li>
+                  <i class="fa fa-tasks user-profile-icon"></i>&nbsp;&nbsp;&nbsp; {{#role info.roleid}}{{/role}}
+                </li>
+                <li class="m-top-xs">
+                        <i class="fa fa-birthday-cake  user-profile-icon"></i>&nbsp;&nbsp;&nbsp;{{#format_date info.birthday}}{{/format_date}}
+                      </li>
+                <li>
+                  <i class="fa fa-star user-profile-icon"></i>&nbsp;&nbsp;&nbsp; {{#if info.ispremium}}Premium {{else}}Hết Hạn{{/if}}
+                </li>
+                <li>
+                  <i class="fa fa-pencil  user-profile-icon"></i>&nbsp;&nbsp;&nbsp; {{username}}
+                </li>
+                
+                {{#if info.ispremium}}
+                <li>
+                    <i class="fa fa-times user-profile-icon"></i>&nbsp;&nbsp;&nbsp; {{#format_date info.time_premium}}{{/format_date}}
+                </li>
+                {{/if}}
+                <li><i class="fa fa-money user-profile-icon"></i> &nbsp;&nbsp;&nbsp; {{info.coin}}
+                </li>
+              </ul>
+              <a class="btn btn-success" href="./writer/edituser"><i
+                  class="fa fa-edit m-right-sm"></i>Edit Profile</a>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

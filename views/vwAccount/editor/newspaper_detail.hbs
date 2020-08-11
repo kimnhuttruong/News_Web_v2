@@ -1,0 +1,143 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>View Detail Newpaper</h3>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="x_panel">
+
+            <div class="x_content">
+              <br />
+              <form class="form-horizontal form-label-left" method="POST">
+
+                <div class="form-group">
+                  <div class="profile_img">
+                    <div id="crop-avatar">
+                      <!-- Current avatar -->
+                      {{#if next}}
+                      {{#if info_bigsize}}
+                      <img  style="width: 400px; height:auto" src="/public/{{info.info_bigsize}}" alt="Avatar">
+                      {{else}}
+                      <img  style="width: 400px; height:auto" class="" src="/public/{{info.avatar}}" alt="Avatar">
+                      {{/if}}
+                      {{else}}
+                      {{#if info_bigsize}}
+                      <img  style="width: 400px; height:auto" class="" src="{{info.info_bigsize}}" alt="Avatar">
+                      {{else}}
+                      <img  style="width: 400px; height:auto" class="" src="{{info.avatar}}" alt="Avatar">
+                      {{/if}}
+                      {{/if}}
+                      <title="Change the avatar">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">ID</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="text" class="form-control" readonly="readonly" name="id" value="{{info.id}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Tilte</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="text" class="form-control" readonly="readonly" name="name" value="{{info.name}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="text" class="form-control" readonly="readonly" name="desc" value="{{info.desc}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Tags</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="text" class="form-control"  readonly="readonly" value="{{#each info.tag}}{{name}},{{/each}}">
+                  </div>
+                </div>
+                <div class=" form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Time</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input required type="datetime-local" class="form-control" id="time" name="time" value="{{info.time}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Detail</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <p>
+                      {{{info.detail}}}
+                    </p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Premium</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="checkbox" value="true" name="ispremium" {{#if info.ispremium}} checked {{/if}}>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <select class="js-filter  form-control" name="statusid" id="statusid">
+                      <option value="4" {{#active_role info.statusid 4}}{{/active_role}}>Chưa được duyệt</option>
+                      <option value="1" {{#active_role info.statusid 1}}{{/active_role}}>Đã được duyệt & chờ xuất bản
+                      </option>
+                      <option value="2" {{#active_role info.statusid 2}}{{/active_role}}>Đã xuất bản</option>
+                      <option value="3" {{#active_role info.statusid 3}}{{/active_role}}>Bị từ chối</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="text" readonly="readonly" class="form-control" value="{{info.category}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Topic</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="text" readonly="readonly" class="form-control" value="{{info.topic}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Note</label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <textarea rows="9" cols="70" class="form-control" name="note" value="{{info.note}}">
+                          </textarea>
+                  </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                    <a class="btn btn-primary" href="../news" role="button">Back</a>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /page content -->
+</div>

@@ -1,0 +1,116 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+<div class="right_col" role="main">
+  <div class="title_left">
+    <h3>Accounts</h3>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="x_content">
+
+          <div class="clearfix">
+            <a class="btn btn-primary " href="./adduser" role="button" title="edit">
+              <i class="fa fa-plus" aria-hidden="true"></i> Thêm Tài Khoản
+            </a>
+          </div>
+          <div class="clearfix">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"></label>
+              </div>
+              <form action="/account/admin/accounts" method="get">
+                <label class="input-group-text" for="inputGroupSelect01">Role</label>
+                <select class="custom-select" id="roleid" name="roleid">
+                  <option selected value="-1">All</option>
+                  {{#each roles}}
+                  <option {{#equalTopic id ../roleid}}{{/equalTopic}} value="{{id}}">{{name}}</option>
+                  {{/each}}
+                </select>
+
+                <button type="submit" class="btn btn-success btn-sm">Xem</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        </br>
+        <table class="js-dynamitable     table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Birhday</th>
+              <th>Role</th>
+              <th>Premium</th>
+              <th>Action </th>
+            </tr>
+
+          </thead>
+          <tbody>
+            {{#each data}}
+            <tr>
+              <td>{{id}}</td>
+              <td>{{username}}</td>
+              <td>{{email}}</td>
+              <td>{{#format_date birthday}}{{/format_date}}</td>
+              <td>{{#role roleid}}{{/role}}</td>
+              <td>{{#premium time_premium}}{{/premium}}</td>
+              <td class="text-right">
+                <a class="btn btn-danger btn-sm" href="./deleteuser/{{id}}" role="button" title="delete">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-primary btn-sm" href="./edituser/{{id}}" role="button" title="edit">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item {{prev.css}}"><a class="page-link" onclick="{{prev.onclick}}"
+                href="{{origin}}&page=1">First</a></li>
+            <li class="page-item {{prev.css}}">
+              <a class="page-link " onclick="{{prev.onclick}}" href="{{origin}}&page={{#add page -1}}{{/add}}"
+                tabindex="-1">Previous</a>
+            </li>
+            {{#each pages}}
+            <li class="page-item {{active}}"><a class="page-link" href="{{../origin}}&page={{index}}">{{index}}</a></li>
+            {{/each}}
+            <li class="page-item {{next.css}}">
+              <a class="page-link " onclick="{{next.onclick}}" href="{{origin}}&page={{#add page 1}}{{/add}}">Next</a>
+            </li>
+            <li class="page-item {{next.css}}"><a class="page-link" onclick="{{next.onclick}}"
+                href="{{origin}}&page={{last}}">Last</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>

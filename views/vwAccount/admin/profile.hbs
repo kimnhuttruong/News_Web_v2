@@ -1,0 +1,75 @@
+ {{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+  {{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+  {{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+ <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>User Profile</h3>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>User Report <small>Activity report</small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                   
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="col-md-12 col-sm-12 col-xs-12 profile_left">
+                    <div class="profile_img">
+                      <div id="crop-avatar">
+                        <!-- Current avatar -->
+                        <img class="img-responsive avatar-view img-rounded" style="max-height: 250px;"  src="{{{img}}}" alt="Avatar"
+                          title="the avatar">
+                      </div>
+                    </div>
+                    {{#each data}}
+                    <h3>{{username}}</h3>
+
+                    <ul class="list-unstyled user_data">
+                      <li><i class="fa fa-envelope user-profile-icon"></i>&nbsp;&nbsp;&nbsp; {{email}}
+                      </li>
+
+                      <li>
+                        <i class="fa fa-tasks user-profile-icon"></i>&nbsp;&nbsp;&nbsp; {{#role roleid}}{{/role}}
+                      </li>
+
+                      <li class="m-top-xs">
+                        <i class="fa fa-birthday-cake  user-profile-icon"></i>&nbsp;&nbsp;&nbsp;{{#format_date birthday}}{{/format_date}}
+                      </li>
+                    </ul>
+                                        <a class="btn btn-success" href="./edituser/{{id}}"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                    
+                    {{/each}}
+<br />
+
+                 
+
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /page content -->

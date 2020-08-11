@@ -1,0 +1,599 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="../../public/css/master.css" />
+<link rel="stylesheet" href="../public/style.css">
+<link rel="icon" href="../public/img/core-img/favicon.ico">
+
+{{/section}}
+
+{{#section 'js'}}
+
+<!-- jQuery-2.2.4 js -->
+<script src="../public/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="../public/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="../public/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="../public/js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="../public/js/active.js"></script>
+
+<!-- ##### Hero Area Start ##### -->
+
+<!-- Active js -->
+<script src="../public/js/active.js"></script>
+<script src="../public/js/home_script.js"></script>
+<script type="text/javascript">
+
+</script>
+{{/section}}
+<header class="header-area">
+    <!-- Top Header Area -->
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header-content d-flex align-items-center justify-content-between">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="/"><img src="../../public/img/core-img/logo.png" alt=""></a>
+                        </div>
+
+                        <!-- Login Search Area -->
+                        <div class="login-search-area d-flex align-items-center">
+                            <!-- Login -->
+                            <div class="login d-flex" >
+                                <a   href="/account/{{login}}">
+                                    <img src="../public/img/core-img/no_image.png" alt=""
+                                        style="width:30px;height:30px;">{{upper_login login}}</a>
+                                <a  href="/account/{{#role user.roleid}}{{/role}}">
+
+                                    <img src="{{ user.img}}" alt=""
+                                        style="width:30px;height:30px;">{{user.username}}</a>
+
+
+                            </div>
+                            <!-- Search Form -->
+                            <div class="search-form">
+                                <form action="/newspaper/search" method="get">
+                                    <input type="search" class="typeahead tt-query" name="typeahead" placeholder="">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="newspaper-main-menu" id="stickyMenu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="/"><img src="public/img/core-img/logo.png" alt=""></a>
+                    </div>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- close btn -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <nav class="navbar navbar-expand-md">
+                            <div class="container">
+
+                                <button class="navbar-toggler d-none" data-toggle="collapse"
+                                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                                        class="navbar-toggler-icon"></span></button>
+                                <div class="collapse navbar-collapse" id="navcol-1">
+                                    <ul class="nav navbar-nav w-100 justify-content-between">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="/">Trang chủ <span
+                                                    class="sr-only">(current)</span></a>
+                                        </li>
+
+                                        {{#each this.arrCat}}
+                                        {{!-- {{#with category as | cat |}} --}}
+                                         
+                                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link"
+                                                data-toggle="dropdown" aria-expanded="false"
+                                                href="/newspaper?topic={{id}}">{{name}}</a>
+                                            <div class="dropdown-menu" role="menu">
+                                                {{#each topic}}
+                                                <a class="dropdown-item" role="presentation"
+                                                    href="/newspaper?cat={{../id}}&&topic={{id}}">{{name}}</a>
+                                                {{/each}}
+                                            </div>
+                                        </li>
+                                        {{!-- {{/with}} --}}
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <!-- Nav End -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="hero-area">
+    <div class="container">
+        <div class="row align-items-center">
+
+
+            <!-- Hero Add -->
+            <div style="width: 150%;">
+
+
+
+
+                <div class="section-heading">
+                    <h6>Bài nổi bật</h6>
+
+                </div>
+                <div id="demo" class="carousel slide" data-ride="carousel">
+
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="" data-slide-to="0" class="active"></li>
+                        <li data-target="" data-slide-to="1"></li>
+                        <li data-target="" data-slide-to="2"></li>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+
+                        {{#each slide1 }}
+                        <div class="carousel-item active">
+                            <a href="/newspaper/detail/{{id}}"> <img src="{{avatar}}" 
+                                    class="d-block w-100 lazyload" alt="..." style="width: 450px;height:300px;{{img_premium ispremium ../user.time_premium}}"></a>
+                            <div style="background-color: aliceblue;" class="carousel-caption d-md-block">
+                                <h6 class="text-light font-weight-light">
+                                    <a href="/newspaper?topic={{t_id}}" class="badge badge-warning mr-3">{{t_name}}</a>
+                                </h6>
+                                <a href="/newspaper/detail/{{id}}" class="text-light link_trend">
+                                    <h3 title="{{name}}">{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span> </h3>
+                                </a>
+                                <p class="card-subtitle mt-2 mr-1 text-muted">Ngày đăng: {{format_date time}}
+                                </p>
+                                {{!-- <p class="text-light font-weight-light">Tác giả: {{author}}</p> --}}
+                            </div>
+                        </div>
+                        {{/each}}
+
+                        {{#each slide2 }}
+                        <div class="carousel-item active">
+                            <a href="/newspaper/detail/{{id}}"> <img src="{{avatar}}" 
+                                    class="d-block w-100 lazyload" alt="..." style="width: 450px;height:300px;{{img_premium ispremium ../user.time_premium}}"></a>
+                            <div style="background-color: aliceblue;" class="carousel-caption d-md-block">
+                                <h6 class="text-light font-weight-light">
+                                    <a href="/newspaper?topic={{t_id}}" class="badge badge-warning mr-3">{{t_name}}</a>
+                                </h6>
+                                <a href="/newspaper/detail/{{id}}" class="text-light link_trend">
+                                    <h3 title="{{name}}">{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span> </h3>
+                                </a>
+                                <p class="card-subtitle mt-2 mr-1 text-muted">Ngày đăng: {{format_date time}}
+                                </p>
+                                {{!-- <p class="text-light font-weight-light">Tác giả: {{author}}</p> --}}
+                            </div>
+                        </div>
+                        {{/each}}
+
+                        {{#each slide3 }}
+                        <div class="carousel-item active">
+                            <a href="/newspaper/detail/{{id}}"> <img src="{{avatar}}" 
+                                    class="d-block w-100 lazyload" alt="..." style="width: 450px;height:300px;{{img_premium ispremium ../user.time_premium}}"></a>
+                            <div style="background-color: aliceblue;" class="carousel-caption d-md-block">
+                                <h6 class="text-light font-weight-light">
+                                    <a href="/newspaper?topic={{t_id}}" class="badge badge-warning mr-3">{{t_name}}</a>
+                                </h6>
+                                <a href="/newspaper/detail/{{id}}" class="text-light link_trend">
+                                    <h3 title="{{name}}">{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span> </h3>
+                                </a>
+                                <p class="card-subtitle mt-2 mr-1 text-muted">Ngày đăng: {{format_date time}}
+                                </p>
+                                {{!-- <p class="text-light font-weight-light">Tác giả: {{author}}</p> --}}
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+
+
+                <!-- Hero Add -->
+                <div class="col-12 col-lg-3">
+
+
+
+                </div>
+
+            </div>
+            <!-- ##### Hero Area End ##### -->
+
+
+
+
+            <!-- ##### Featured Post Area End ##### -->
+
+            <!-- ##### Popular News Area Start ##### -->
+            <div class="popular-news-area section-padding-80-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <div class="section-heading">
+                                <h6>TOP10 bài viết xem nhiều nhất</h6>
+                            </div>
+
+                            {{#if listPopular_empty}}
+                            <div class="card-body">
+                                <p class="card-text">Không có dữ liệu.</p>
+                            </div>
+                            {{else}}
+                            <div class="row">
+                                {{#each this.listPopular}}
+                                <!-- Single Post -->
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="/newspaper/detail/{{n_id}}"><img
+                                                    src="{{avatar}}" style="width: 512px; height:250px;{{img_premium ispremium ../user.time_premium}}"
+                                                    alt="{{n_id}}-{{n_name}}"></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a href="/newspaper?topic={{t_id}}" class="post-catagory">{{t_name}} |
+                                                {{format_date n_time}} </a>
+                                            <a href="/newspaper/detail/{{n_id}}" class="post-title">
+                                                <h6 style="margin:0;">{{n_name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span></h6>
+                                            </a>
+
+                                            <div class="post-meta d-flex align-items-center">
+                                                <a href="newspaper/detail/{{id}}"><img src="public/img/core-img/eye.png"
+                                                        alt="">
+                                                    <span>{{view}} </span><span>lượt xem</span></a>
+                                                {{!-- <a href="newspaper/detail/{{id}}" class="post-comment"><img
+                                                        src="public/img/core-img/chat.png" alt="">
+                                                    <span>Bình luận</span></a> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                            </div>
+                        </div>
+                        {{/if}}
+
+                        <div class="col-12 col-lg-4">
+                            <div class="section-heading">
+                                <h6>Tin nhanh</h6>
+                            </div>
+                            <!-- Popular News Widget -->
+                            <div class="popular-news-widget mb-30">
+                                <h3>Thông tin mới </h3>
+                                {{#each this.listRight}}
+
+                                <!-- Single Popular Blog -->
+                                <div class="single-popular-post">
+                                    {{!-- <a href="/newspaper/detail/{{id}}">
+                                        <h6>{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span></h6>
+                                    </a>
+                                    <a href="/newspaper?topic={{t_id}}"> <span>{{t_name}} |
+                                            {{format_date time}}</span>
+                                    </a> --}}
+                                    <a href="/newspaper?topic={{t_id}}">
+                                        <h4>{{t_name}} | {{format_date time}}</h4>
+                                    </a>
+                                    
+                                    <a href="/newspaper/detail/{{id}}"> <span>{{name}} <br>
+                                            <span style="color: yellow;">{{{content_premium ispremium}}}</span></span>
+                                    </a>
+                                </div>
+                                {{/each}}
+
+                            </div>
+
+                            <!-- Newsletter Widget -->
+                            <div class="newsletter-widget">
+                               <a href="https://shopee.vn/">
+                                <img src="https://balotot.com/wp-content/uploads/2017/07/sinh-nhat-1.jpg" alt="">
+                              <img
+                                    src="https://photo2.tinhte.vn/data/attachment-files/2019/11/4837730_sieu-sale-12-12-shopee-7.jpg">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ##### Popular News Area End ##### -->
+
+            <!-- ##### Video Post Area Start ##### -->
+            <div class="video-post-area bg-img bg-overlay" style="background-image: url(img/bg-img/bg1.jpg);">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- Single Video Post -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="single-video-post">
+                                <img src="public/img/bg-img/video1.jpg" alt="">
+                                <!-- Video Button -->
+                                <div class="videobtn">
+                                    <a href="https://www.youtube.com/watch?v=5BQr-j3BBzU" class="videoPlayer"><i
+                                            class="fa fa-play" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Video Post -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="single-video-post">
+                                <img src="public/img/bg-img/video2.jpg" alt="">
+                                <!-- Video Button -->
+                                <div class="videobtn">
+                                    <a href="https://www.youtube.com/watch?v=5BQr-j3BBzU" class="videoPlayer"><i
+                                            class="fa fa-play" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Video Post -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="single-video-post">
+                                <img src="public/img/bg-img/video3.jpg" alt="">
+                                <!-- Video Button -->
+                                <div class="videobtn">
+                                    <a href="https://www.youtube.com/watch?v=5BQr-j3BBzU" class="videoPlayer"><i
+                                            class="fa fa-play" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ##### Video Post Area End ##### -->
+
+            <!-- ##### Editorial Post Area Start ##### -->
+            <div class="editors-pick-post-area section-padding-80-50">
+                <div class="container">
+                    <div class="row">
+                        <!-- Editors Pick -->
+                        <div class="col-12 col-md-7 col-lg-9">
+                            <div class="section-heading">
+                                <h6>Bài viết mới nhất</h6>
+                            </div>
+                            {{#if timeNews_empty}}
+                            <div class="card-body">
+                                <p class="card-text">Không có dữ liệu.</p>
+                            </div>
+                            {{else}}
+                            <div class="row">
+                                {{#each this.timeNews}}
+                                <!-- Single Post -->
+                                <div class="col-12 col-lg-4">
+                                    <div class="single-blog-post">
+                                        <div class="post-thumb">
+                                            <a href="/newspaper/detail/{{id}}"><img
+                                                    src="{{avatar}}" style="width: 255px;height:190px;{{img_premium ispremium ../user.time_premium}}"  alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a href="/newspaper?topic={{t_id}}" class="post-catagory">{{t_name}} |
+                                                {{format_date time}}</a>
+                                            <a  href="/newspaper/detail/{{id}}" class="post-title">
+                                                <h4>{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span></h4>
+                                            </a>
+                                            <div class="post-meta d-flex align-items-center">
+                                                <a href="newspaper/detail/{{id}}"><img src="public/img/core-img/eye.png"
+                                                        alt="">
+                                                    <span> {{view}} </span><span>lượt xem</span></a>
+                                                {{!-- <a href="newspaper/detail/{{id}}" class="post-comment"><img
+                                                        src="public/img/core-img/chat.png" alt="">
+                                                    <span>Bình luận</span></a> --}}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                            </div>
+                            {{/if}}
+                        </div>
+
+                        <!-- World News -->
+                        <div class="col-12 col-md-5 col-lg-3">
+                            <div class="section-heading">
+                                <h6>Top chuyên mục</h6>
+                            </div>
+                            {{#each listTopCategory}}
+                            <!-- Single Post -->
+                            <div class="single-blog-post style-2">
+                                <div class="post-thumb">
+                                    <a href="newspaper/detail/{{id}}"><img src="{{avatar}}"  style="width: 512px;height: 190px;{{img_premium ispremium ../user.time_premium}}" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                     <a href="/newspaper?topic={{topicid}}" class="post-catagory">{{t_name}}</a>
+                                    <a href="newspaper/detail/{{id}}" class="post-title">
+                                        <h6>{{name}} <span style="color: yellow;"> &nbsp;&nbsp;&nbsp; {{{content_premium ispremium}}}</span></h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <div class="post-date"><a href="newspaper/detail/{{id}}">{{#format_date time}}{{/format_date}}
+                                        
+                                           <img src="public/img/core-img/eye.png"
+                                                    alt="">
+                                                <span> {{view}} </span><span>lượt xem</span>
+                                            {{!-- <img
+                                                    src="public/img/core-img/chat.png" alt="">
+                                                <span>Bình luận</span></a> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ##### Editorial Post Area End ##### -->
+
+            <!-- ##### Footer Add Area Start ##### -->
+            <div class="footer-add-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="footer-add">
+                                <a href="#"><img src="public/img/bg-img/footer-add.gif" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ##### Footer Add Area End ##### -->
+
+            <!-- ##### Footer Area Start ##### -->
+            <class class="footer-area">
+
+                <!-- Main Footer Area -->
+                <div class="main-footer-area">
+                    <div class="container">
+                        <div class="row">
+
+                            <!-- Footer Widget Area -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="footer-widget-area mt-80">
+                                    <!-- Footer Logo -->
+                                    <div class="footer-logo">
+                                        <a href="index.html"><img src="public/img/core-img/logo.png" alt=""></a>
+                                    </div>
+                                    <!-- List -->
+                                    <ul class="list">
+                                        <li><a href="mailto:contact@youremail.com">teamTTTA@gmail.com</a></li>
+                                        <li><a href="tel:+4352782883884">+84 3834 63777</a></li>
+                                        <li><a href="http://yoursitename.com">www.teamTTTA.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Footer Widget Area -->
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <div class="footer-widget-area mt-80">
+                                    <!-- Title -->
+                                    <h4 class="widget-title">Politics</h4>
+                                    <!-- List -->
+                                    <ul class="list">
+                                        <li><a href="#">Business</a></li>
+                                        <li><a href="#">Markets</a></li>
+                                        <li><a href="#">Tech</a></li>
+                                        <li><a href="#">Luxury</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Footer Widget Area -->
+                            <div class="col-12 col-sm-4 col-lg-2">
+                                <div class="footer-widget-area mt-80">
+                                    <!-- Title -->
+                                    <h4 class="widget-title">Featured</h4>
+                                    <!-- List -->
+                                    <ul class="list">
+                                        <li><a href="#">Football</a></li>
+                                        <li><a href="#">Golf</a></li>
+                                        <li><a href="#">Tennis</a></li>
+                                        <li><a href="#">Motorsport</a></li>
+                                        <li><a href="#">Horseracing</a></li>
+                                        <li><a href="#">Equestrian</a></li>
+                                        <li><a href="#">Sailing</a></li>
+                                        <li><a href="#">Skiing</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Footer Widget Area -->
+                            <div class="col-12 col-sm-4 col-lg-2">
+                                <div class="footer-widget-area mt-80">
+                                    <!-- Title -->
+                                    <h4 class="widget-title">FAQ</h4>
+                                    <!-- List -->
+                                    <ul class="list">
+                                        <li><a href="#">Aviation</a></li>
+                                        <li><a href="#">Business</a></li>
+                                        <li><a href="#">Traveller</a></li>
+                                        <li><a href="#">Destinations</a></li>
+                                        <li><a href="#">Features</a></li>
+                                        <li><a href="#">Food/Drink</a></li>
+                                        <li><a href="#">Hotels</a></li>
+                                        <li><a href="#">Partner Hotels</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Footer Widget Area -->
+                            <div class="col-12 col-sm-4 col-lg-2">
+                                <div class="footer-widget-area mt-80">
+                                    <!-- Title -->
+                                    <h4 class="widget-title">+More</h4>
+                                    <!-- List -->
+                                    <ul class="list">
+                                        <li><a href="#">Fashion</a></li>
+                                        <li><a href="#">Design</a></li>
+                                        <li><a href="#">Architecture</a></li>
+                                        <li><a href="#">Arts</a></li>
+                                        <li><a href="#">Autos</a></li>
+                                        <li><a href="#">Luxury</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer Area -->
+                <div class="bottom-footer-area">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <!-- Copywrite -->
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                   Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">TTTA Team</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </class>
+        </div>
+    </div>
+</div>

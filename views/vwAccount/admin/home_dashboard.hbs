@@ -1,0 +1,185 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+  {{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+  {{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'js'}}
+<script>
+    var ctxD = document.getElementById("doughnutChart").getContext('2d');
+    var myLineChart = new Chart(ctxD, {
+      type: 'doughnut',
+
+      data: {
+        labels: [{{#each datatopscomment }}"{{#format_new_desc  this.name}}{{/format_new_desc}}",{{/ each}}],
+    datasets: [{
+      data: [{{#each datatopscomment }}'{{total_comment}}', {{/ each}}],
+      backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+        }]
+      },
+    options: {
+      responsive: true
+    }
+    });
+  </script>
+{{/section}}
+<div class="right_col" role="main">
+        <!-- top tiles -->
+        <div class="row tile_count">
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Subscriber</span>
+            <div class="count green">{{total_subscriber}}</div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Total Editor</span>
+            <div class="count">{{total_editor}}</div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Writers</span>
+            <div class="count ">{{total_writer}}</div>
+          </div>
+
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total News</span>
+            <div class="count">{{total_new}}</div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Views</span>
+            <div class="count">{{total_view}}</div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Commmets</span>
+            <div class="count">11</div>
+            {{!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> --}}
+          </div>
+        </div>
+        <!-- /top tiles -->
+
+        <div class="row">
+
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+              <div class="x_title">
+                <h2>Top 5 Rating</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <h4>Bài báo có lượt xem nhiều nhất</h4>
+                {{#each datatops}}
+                <div class="widget_summary">
+                  <div class="w_left w_25">
+                    <span>{{#format_new_desc  this.name}}{{/format_new_desc}}</span>
+                  </div>
+                  <div class="w_center w_55">
+                    <div class="progress">
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="width: {{#format_new_devide this.view this.views}}{{/format_new_devide}}%;">
+                        <span class="sr-only">{{#format_new_devide this.view this.views}}{{/format_new_devide}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w_right w_20">
+                    <span>{{this.view}}</span>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                {{/each}}
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320 overflow_hidden">
+              <div class="x_title">
+                <h2>Top 5 Most Comments </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="" style="width:100%">
+                  <tr>
+                    <th style="width:37%;">
+                      <p>Bài báo có số lượng comment nhiều nhất</p>
+                    </th>
+
+                  </tr>
+                  <tr>
+                    <td>
+                      <canvas id="doughnutChart" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Recent News <small>Bài viết mới nhất</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="dashboard-widget-content">
+
+                  <ul class="list-unstyled timeline widget">
+                    {{#each datanews_time}}
+                    <li>
+                      <div class="block">
+                        <div class="block_content">
+                          <h2 class="title">
+                            <a>{{this.name}}</a>
+                          </h2>
+                          <div class="byline">
+                            <span>{{#format_date this.time}}{{/format_date}}</span> by <a>{{this.signature}}</a>
+                          </div>
+                          <p class="excerpt">{{this.desc}} <a>Read&nbsp;More</a>
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    {{/each}}
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>

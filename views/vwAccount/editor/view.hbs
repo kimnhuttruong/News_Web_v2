@@ -1,0 +1,162 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'js'}}
+
+<script>
+  $(document).ready(function () {
+    
+    $('#catid').on('change', function() {
+      $(".opid").remove();
+      $('#topicid').find('option:selected').remove();
+      
+      {{#each cats}}
+        
+        if({{id}}==$('#catid').val()){
+          
+          {{#each topic}}
+          $("#topicid").append('<option id="opid" class="opid" value={{id}}>{{name}}</option>');
+          {{/each}}
+        }
+      {{/each}}
+      $("#topicid").append('<option id="opid" class="opid" value=-1>All</option>');
+    });
+
+});
+
+
+ 
+</script>
+<!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
+
+<!-- page content -->
+{{/section}}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3> <small></small></h3>
+      </div>
+
+
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="x_content">
+
+            <div class="clearfix">
+              <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"></label>
+              </div>
+              <form action="/account/editor/news" method="get">
+                <label >Category</label>
+                <select class="custom-select" id="catid" name="catid">
+                  <option selected value="-1">All</option>
+                  {{#each cats}}
+                  <option  {{#equalTopic id ../catid}}{{/equalTopic}} value="{{id}}">{{name}}</option>
+                  {{/each}}
+                </select>
+                <label >Topic</label>
+                <select class="custom-select" id="topicid" name="topicid">
+                  <option class="opid" value="-1">All</option>
+                  {{#each topics}}
+                  <option  class="opid"  {{#equalTopic id ../topicid}}{{/equalTopic}} value="{{id}}">{{name}}</option>
+                  {{/each}}
+                </select>
+                <button type="submit" class="btn btn-success btn-sm"
+                        >Xem</button>
+              </form>
+            </div>
+            </div>
+
+            </br>
+            <table class="js-dynamitable     table table-bordered">
+              <thead>
+                <tr>
+                  <th>Catagory</th>
+                  <th>Topic</th>
+                  <th>Titile</th>
+                  <th>Desc</th>
+                   <th>Status</th>
+                  <th>Start date</th>
+
+                  <th>Premium</th>
+
+                  <th>Action </th>
+                </tr>
+                
+              </thead>
+              <tbody>
+                {{#each list}}
+                <tr>
+                  <td>{{category}}</td>
+                  <td>{{topic}}</td>
+                  <td>{{name}}</td>
+                  <td>{{desc}}</td>
+                  <td>{{#status statusid}}{{/status}}</td>
+                  <td>{{#format_date time}}{{/format_date}}</td>
+
+                  <td>{{#premium_status ispremium}}{{/premium_status}}</td>
+
+                  <td class="text-right">
+                    <a class="btn btn-primary btn-sm" href="./news/{{id}}" role="button" title="View">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {{prev.css}}"><a class="page-link" onclick="{{prev.onclick}}"
+                                    href="{{origin}}&page=1">First</a></li>
+                            <li class="page-item {{prev.css}}">
+                                <a class="page-link " onclick="{{prev.onclick}}"
+                                    href="{{origin}}&page={{#add page -1}}{{/add}}"
+                                    tabindex="-1">Previous</a>
+                            </li>
+                            {{#each pages}}
+                            <li class="page-item {{active}}"><a class="page-link"
+                                    href="{{../origin}}&page={{index}}">{{index}}</a></li>
+                            {{/each}}
+                            <li class="page-item {{next.css}}">
+                                <a class="page-link " onclick="{{next.onclick}}"
+                                    href="{{origin}}&page={{#add page 1}}{{/add}}">Next</a>
+                            </li>
+                            <li class="page-item {{next.css}}"><a class="page-link" onclick="{{next.onclick}}"
+                                    href="{{origin}}&page={{last}}">Last</a></li>
+                        </ul>
+                    </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->

@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login - srtdash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/public/img/icon/favicon.ico">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/themify-icons.css">
+    <link rel="stylesheet" href="/public/css/metisMenu.css">
+    <link rel="stylesheet" href="/public/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/public/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="/public/css/typography.css">
+    <link rel="stylesheet" href="/public/css/default-css.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/public/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="/public/js/modernizr-2.8.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+   
+
+    <style>
+    </style>
+    
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- login area start -->
+    <div class="login-area login-s2">
+        <div class="container">
+            <div class="login-box ptb--100">
+                <form id="frmLogin" action="/account/login" autocomplete="off" method="POST" autocomplete="off">
+                    <div class="login-form-head">
+                        <h4>Sign In</h4>
+                        <p>Hello there, Sign in </p>
+                    </div>
+                    <div class="login-form-body">
+                        {{#each data}}
+                        <div class="form-gp focused">
+                            <label for="email">Email address </label>
+                            <input required type="email" id="email" name="email" value={{email}}>
+                            <i class="ti-email"></i>
+                        </div>
+                        <div class="form-gp focused">
+                            <label for="password">Password</label>
+                            <input required type="password" id="password" name="password" value={{password}}>
+                            <i class="ti-lock"></i>
+                        </div>
+                        <div class="row mb-4 rmber-area">
+                            <div class="col-6">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox" name="checkbox">
+                                    <label class="custom-control-label" for="checkbox">Remember Me</label>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a href="forgotpassword">Forgot Password?</a>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div class="submit-btn-area">
+                            <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                            <div class="login-other row mt-4">
+                                <div class="col-6">
+                                    <a class="fb-login" href="auth/facebook">Log in with <i class="fa fa-facebook"></i></a>
+                                </div>
+                                <div class="col-6">
+                                    <a class="google-login" href="auth/google">Log in with <i class="fa fa-google"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-footer text-center mt-5">
+                            <p class="text-muted">Don't have an account? <a href="register">Sign up</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- login area end -->
+
+    <!-- jquery latest version -->
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="/public/js/popper.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/owl.carousel.min.js"></script>
+    <script src="/public/js/metisMenu.min.js"></script>
+    <script src="/public/js/jquery.slimscroll.min.js"></script>
+    <script src="/public/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="/public/js/plugins.js"></script>
+    <script src="/public/js/scripts.js"></script>
+    <script>
+        
+        $('#frmLogin').on('submit',function(e){
+            e.preventDefault();
+            validate()
+        })
+        function validate()
+        {
+            const email =$('#email').val();
+            const password =$('#password').val();
+            $.post(`/account/login-is-available`,{email:email,password:password},function(data){
+                
+                if(data===true)
+                {
+                     $('#frmLogin').off('submit').submit();
+                }else
+                {
+                    alert("Email hoặc mật khẩu không đúng.");
+                }
+            }, 'JSON')
+            return true;
+        }
+         
+    </script>
+</body>
+
+</html>

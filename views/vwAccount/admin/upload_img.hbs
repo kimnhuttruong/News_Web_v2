@@ -1,0 +1,92 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
+<script>
+    $('#fuMain').fileinput({
+        theme: 'fa',
+        showCaption: true,
+        dropZoneEnabled: true,
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        language: 'vi',
+
+    });
+</script>
+{{/section}}
+<div class="right_col" role="main">
+    <div class="">
+        <a class="btn btn-primary d-flex float-left" href="../newspaper/add" role="button"><i
+                class="fa fa-arrow-left"></i></a>
+        <div class="page-title">
+
+            <div class="title_left col-md-12">
+                <h3>Đăng ảnh</h3>
+            </div>
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <br />
+                                <form method="post" novalidate enctype="multipart/form-data">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Upload Form
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="file-loading">
+                                                    <input id="fuMain" name="fuMain" type="file" multiple>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{!-- <div class="card-footer">
+                                        <button type="submit" class="btn btn-lg btn-success btn-block">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            Submit
+                                        </button>
+                                    </div> --}}
+                                    </div>
+                                </form>
+                                <br>
+                                <h2> Ảnh của bạn</h2>
+                                <br>
+                                <hr>
+                                <div style="margin: auto;" class="d-flex justify-content-between">
+                                    {{#if this.empty}}
+                                    <h3>Chưa có ảnh</h3>
+                                    {{else}}
+                                    {{#each this.images}}
+                                    <div class="row col-sm-3 col-xs-2 col-md-3 w-20" style="height: 240; margin-bottom:5px">
+                                        <div class="container">
+                                            <div class="col-xs-3 float-left">
+                                                <div class="card-group" style="width:1rem;">
+                                                    <img class="card-img-top" style="width: 180px; height:180px"
+                                                        src="../../../../public/uploads/{{name}}" alt="{{name}}">
+                                                    <div class="card-body" style="height: 40px; width=100px">
+                                                        <p class="card-text">{{name}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+
+</div>
+
+</div>

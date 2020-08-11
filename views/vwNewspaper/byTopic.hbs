@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="/public/style.css">
+<header class="header-area">
+    <!-- Top Header Area -->
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header-content d-flex align-items-center justify-content-between">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="/"><img src="../../public/img/core-img/logo.png" alt=""></a>
+                        </div>
+
+                        <!-- Login Search Area -->
+                        <div class="login-search-area d-flex align-items-center">
+                            <!-- Login -->
+                            <div class="login d-flex">
+                                <a href="/account/{{login}}">
+                                    <img src="../../public/img/core-img/no_image.png" alt=""
+                                        style="width:30px;height:30px;">{{upper_login login}}</a>
+                                <a href="/account/{{#role user.roleid}}{{/role}}">
+                                    {{#if isURL}}<img src="{{user.img}}" alt="" style="width:30px;height:30px;">
+                                    {{else}}<img src="../public/uploads/{{user.img}}" alt=""
+                                        style="width:20px;height:20px;">{{/if}}{{user.username}}</a>
+
+                            </div>
+                            <!-- Search Form -->
+                            <div class="search-form">
+                                <form action="#" method="post">
+                                    <input type="search" name="search" class="form-control" placeholder="Search">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="newspaper-main-menu" id="stickyMenu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="/"><img src="/public/img/core-img/logo.png" alt=""></a>
+                    </div>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- close btn -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <nav class="navbar navbar-expand-md">
+                            <div class="container">
+
+                                <button class="navbar-toggler d-none" data-toggle="collapse"
+                                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                                        class="navbar-toggler-icon"></span></button>
+                                <div class="collapse navbar-collapse" id="navcol-1">
+                                    <ul class="nav navbar-nav w-100 justify-content-between">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="/">Trang chủ <span
+                                                    class="sr-only">(current)</span></a>
+                                        </li>
+                                        {{#each this.arrCat}}
+                                        {{#with category as | cat |}}
+                                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link"
+                                                data-toggle="dropdown" aria-expanded="false"
+                                                href="/newspaper/bycate/{{cat.id}}">{{cat.name}}</a>
+                                            <div class="dropdown-menu" role="menu">
+                                                {{#each topic}}
+                                                <a class="dropdown-item" role="presentation"
+                                                    href="/newspaper?cat={{cat.id}}&&topic={{id}}">{{name}}</a>
+                                                {{/each}}
+                                            </div>
+                                        </li>
+                                        {{/with}}
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <!-- Nav End -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

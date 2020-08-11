@@ -1,0 +1,456 @@
+
+<link rel="stylesheet" href="/public/css/master.css" />
+<link rel="stylesheet" href="/public/style.css">
+
+<header class="header-area">
+  <!-- Top Header Area -->
+  <div class="top-header-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="top-header-content d-flex align-items-center justify-content-between">
+            <!-- Logo -->
+            <div class="logo">
+              <a href="/"><img src="../../../../public/img/core-img/logo.png" alt=""></a>
+            </div>
+
+            <!-- Login Search Area -->
+            <div class="login-search-area d-flex align-items-center">
+              <!-- Login -->
+              <div class="login d-flex">
+                <a href="/account/{{login}}">
+                  <img src="../../../../public/img/core-img/no_image.png" alt=""
+                    style="width:30px;height:30px;">{{upper_login login}}</a>
+                <a href="/account/{{#role user.roleid}}{{/role}}">
+                  <img src="{{user.img}}" alt="" style="width:30px;height:30px;">
+                  {{user.username}}
+                </a>
+
+              </div>
+              <!-- Search Form -->
+              <div class="search-form">
+                <form action="#" method="post">
+                  <input type="search" name="search" class="form-control" placeholder="Search">
+                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar Area -->
+  <div class="newspaper-main-menu" id="stickyMenu">
+    <div class="classy-nav-container breakpoint-off">
+      <div class="container">
+        <!-- Menu -->
+        <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/"><img src="public/img/core-img/logo.png" alt=""></a>
+          </div>
+
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu">
+
+            <!-- close btn -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+
+            <!-- Nav Start -->
+            <nav class="navbar navbar-expand-md">
+              <div class="container">
+
+                <button class="navbar-toggler d-none" data-toggle="collapse" data-target="#navcol-1"><span
+                    class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                  <ul class="nav navbar-nav w-100 justify-content-between">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/">Trang chủ <span class="sr-only">(current)</span></a>
+                    </li>
+                    {{#each this.arrCat}}
+                    {{!-- {{#with category as | cat |}} --}}
+
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                        aria-expanded="false" href="/newspaper/bycate/{{id}}">{{name}}</a>
+                      <div class="dropdown-menu" role="menu">
+                        {{#each topic}}
+                        <a class="dropdown-item" role="presentation"
+                          href="/newspaper?cat={{../id}}&&topic={{id}}">{{name}}</a>
+                        {{/each}}
+                      </div>
+                    </li>
+                    {{!-- {{/with}} --}}
+                    {{/each}}
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <!-- Nav End -->
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+<!-- Section js -->
+
+<!-- Core Stylesheet -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="b-title-page__info"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- end .b-title-page-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="l-main-content l-main-content_mrg-right_minus">
+        <article class="b-post b-post-full clearfix">
+          <div class="entry-main">
+
+            <div class="entry-header">
+              <img src="{{this.new.avatar_bigsize}}" alt="" style="height: 300px;">
+
+              <h3 style=" color:#3D7EF1;padding-top: 30px;">{{namecat}}&nbsp;&nbsp;>&nbsp;&nbsp; {{nametopic}} <span
+                  style="font-weight: 100;color:black;width: 100%;font-size:15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{format_date this.new.time}}</span>
+              </h3>
+              <h1 class="entry-title">{{this.new.name}}</h1>
+
+            </div>
+            <div class="entry-content">
+              {{!-- <img class="img-responsive" src="../../public/images/news/{{this.new.id}}/avatar.jpg"
+                alt="{{this.new.name}}" /> --}}
+              {{{this.new.detail}}}
+              <h2 class="entry-title__inner">{{format_date time}}</h2>
+              </section>
+            </div>
+            <div class="entry-footer">
+              <div class="post-tags"><span class="entry-footer__title">tags:</span>
+                {{#each listtag}}
+                <ul class="list-tags list-tags_grey list-unstyled" <li class="list-tags__item"><a
+                    class="list-tags__link btn btn-default" href="/newspaper?tag={{id}}">{{name}}</a>
+                  </li>
+                </ul>
+                {{/each}}
+              </div>
+              {{!-- <div class="entry-footer__social"><span class="entry-footer__title">Share</span>
+                <ul class="social-net list-inline">
+                  <li class="social-net__item"><a class="social-net__link text-primary_h" href="facebook.com"><i
+                        class="icon fa fa-facebook"></i></a></li>
+                  <li class="social-net__item"><a class="social-net__link text-primary_h" href="twitter.com"><i
+                        class="icon fa fa-twitter"></i></a></li>
+                  <li class="social-net__item"><a class="social-net__link text-primary_h" href="pinterest.com"><i
+                        class="icon fa fa-pinterest-p"></i></a></li>
+                  <li class="social-net__item"><a class="social-net__link text-primary_h" href="vk.com"><i
+                        class="icon fa fa-vk"></i></a></li>
+                </ul>
+                <!-- end .social-list-->
+              </div> --}}
+            </div>
+          </div>
+
+        </article>
+
+        <!-- end .post-->
+        <section class="section-comment">
+          {{!-- {{#if this.sum_comment}} --}}
+          <h2 class="ui-title-block">Bình luận:<span>{{format_number sum_comment}} </span> </h2>
+          {{!-- {{/if}} --}}
+
+          {{#each comments}}
+          <ul class="comments-list list-unstyled">
+            <li>
+              <article class="comment clearfix">
+                <div class="comment-face"><img class="img-responsive" src="../../public/uploads/{{img}}" alt="face" />
+                </div>
+                <div class="comment-inner">
+                  <header class="comment-header">
+                    <cite class="comment-author">{{username}}</cite>
+                    <time class="comment-datetime" datetime="2012-10-27">{{format_date create_time}}</time>
+                  </header>
+                  <div class="comment-body">
+                    <p>{{content}}</p>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+          {{/each}}
+        </section>
+        <!-- end .section-comment-->
+        <section class="section-reply-form" id="section-reply-form">
+          <h2 class="ui-title-block">Viết bình luận</h2>
+          <form class="form-reply ui-form" action="/account/comment" method="post">
+            <div class="row">
+              <div class="col-xs-12">
+                <textarea name="content" class="form-control" rows="4" placeholder="Enter your review"
+                  required></textarea>
+              </div>
+            </div>
+            <input type="text" hidden value="{{id}}" name="newspaperid">
+            <div class="row">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+                <button class="ui-form__btn btn btn-primary btn-lg "
+                  {{disabled user.username}}>{{#cantcomment user.username}}{{/cantcomment}} Submit</button>
+              </div>
+            </div>
+          </form>
+        </section>
+        <!-- end .section-reply-form-->
+      </div>
+    </div>
+    <div class="col-md-4">
+      <aside class="l-sidebar l-sidebar_mrg-left l-sidebar_first-section">
+        {{!-- <div class="widget widget-searce">
+          <form class="form-sidebar" id="search-global-form">
+            <input class="form-sidebar__input form-control" type="text" placeholder="Search..." />
+            <button class="form-sidebar__btn"><i class="icon fa fa-search"></i></button>
+          </form>
+        </div> --}}
+        <!-- end .widget-->
+        <div class="widget">
+          <div class="text-center"><a class="b-banner b-banner-5" href="home.html"><img
+                class="center-block img-responsive" src="../../public/media/components/b-banners/banner-7.jpg"
+                alt="foto" /></a>
+            <!-- end .b-banner-->
+          </div>
+        </div>
+        <section class="widget section-sidebar">
+          <h2 class="widget-title ui-title-inner ui-title-inner_condensed"><span class="ui-title-inner__inner">Chuyên
+              mục</span></h2>
+          <div class="widget-content">
+            <ul class="widget-list widget-list_white list list-mark-4">
+              {{#each lcCategories}}
+              <li class="widget-list__item"><a class="widget-list__link {{#if isActive}}active{{/if}}"
+                  href="../bycat/{{id}}">
+                  {{name}}
+                  {{#if this.num_of_new}}
+                  <span class="badge">{{num_of_new}}</span>
+                </a>
+                {{/if}}
+              </li>
+
+              {{/each}}
+            </ul>
+          </div>
+        </section>
+        <!-- end .widget-->
+        <section class="widget section-sidebar">
+          <h2 class="widget-title ui-title-inner"><span class="ui-title-inner__inner">bài viết cùng chuyên mục</span>
+          </h2>
+          <div class="widget-content">
+            {{#each this.topic_news}}
+            <section class="b-post b-post_img-left b-post_img-100 b-post_img-100_mod-a clearfix">
+              <div class="entry-media img-hover-effect"><a class="js-zoom-images img-hover-effect"
+                  href="../detail/{{id}}"><img class="img-responsive hov-scal"
+                    src="/public/images/news/{{id}}/avatar.jpg" alt="sao ko lên hình z :))" /></a></div>
+              <div class="entry-main">
+                <div class="entry-header">
+                  <h2 class="entry-title"><a href="../detail/{{id}}">{{name}}</a></h2>
+                  <div class="entry-meta"><span class="entry-meta__item"><a class="entry-meta__link"
+                        href="../bycat/{{t_id}}"><strong>#{{t_name}} | {{format_date time}}</strong></a></span><span
+                      class="entry-meta__item"><i class="icon fa fa-comment-o text-primary"></i><a
+                        class="entry-meta__link" href="../detail/{{id}}">Bình luận</a></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            {{/each}}
+
+
+            <!-- end .widget-->
+            <section class="widget section-sidebar">
+              <h2 class="widget-title ui-title-inner"><span class="ui-title-inner__inner">Related tags</span></h2>
+              <div class="widget-content">
+                <ul class="list-tags list-tags_grey list-unstyled">
+                  {{#each relatedlisttag}}
+                  <li class="list-tags__item"><a class="list-tags__link btn btn-default"
+                      href="/newspaper?tag={{id}}">{{name}}</a>
+                  </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </section>
+      </aside>
+      <!-- end .sidebar-->
+    </div>
+  </div>
+</div>
+<class class="footer-area" style="background-color: #02031C;">
+  <div class="main-footer-area">
+    <div class="container" style="background-color: #02031C;">
+      <div class="row">
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-widget-area mt-80">
+            <!-- Footer Logo -->
+            <div class="footer-logo">
+              <a href="index.html"><img src="/public/img/core-img/logo.png" alt=""></a>
+            </div>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="mailto:contact@youremail.com">teamTTTA@gmail.com</a></li>
+              <li style="padding: 0; margin: 0;"><a href="tel:+4352782883884">+84 3834 63777</a></li>
+              <li style="padding: 0; margin: 0;"><a href="http://yoursitename.com">www.teamTTTA.com</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-2">
+          <div class="footer-widget-area mt-80" style="font-size: 30px;">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">Politics</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Business</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Markets</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Tech</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Luxury</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-4 col-lg-2">
+          <div class="footer-widget-area mt-80">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">Featured</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Football</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Golf</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Tennis</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Motorsport</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Horseracing</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Equestrian</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Sailing</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Skiing</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-4 col-lg-2">
+          <div class="footer-widget-area mt-80">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">FAQ</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Aviation</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Business</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Traveller</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Destinations</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Features</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Food/Drink</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Hotels</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Partner Hotels</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Widget Area -->
+        <div class="col-12 col-sm-4 col-lg-2">
+          <div class="footer-widget-area mt-80">
+            <!-- Title -->
+            <h4 style="font-size: 25px;" class="widget-title">+More</h4>
+            <!-- List -->
+            <ul class="list">
+              <li style="padding: 0; margin: 0;"><a href="#">Fashion</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Design</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Architecture</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Arts</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Autos</a></li>
+              <li style="padding: 0; margin: 0;"><a href="#">Luxury</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Footer Area -->
+  <div class="bottom-footer-area">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center" style="background-color: #02031C;">
+        <div class="col-12">
+          <!-- Copywrite -->
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved |
+            Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+              target="_blank">TTTA Team</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</class>
+<!-- .footer-->
+
+<!-- end layout-theme-->
+
+
+<!-- ++++++++++++-->
+<!-- MAIN SCRIPTS-->
+<!-- ++++++++++++-->
+
+<script src="/public/libs/jquery-1.12.4.min.js"></script>
+<script src="/public/libs/jquery-migrate-1.2.1.js"></script>
+<script src="/public/libs/modernizr.custom.js"></script>
+<!-- Bootstrap-->
+<script src="/public/libs/bootstrap/bootstrap.min.js"></script>
+<!-- User customization-->
+<script src="/public/js/custom.js"></script>
+<!-- Slider-->
+<script src="/public/plugins/owl-carousel/owl.carousel.min.js"></script>
+<!-- Pop-up window-->
+<script src="/public/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Headers scripts-->
+{{!-- <script src="/public/plugins/headers/jquery.dlmenu.js"></script>
+<script src="/public/plugins/headers/slidebar.js"></script>
+<script src="/public/plugins/headers/header.js"></script> --}}
+<!-- Mail scripts-->
+<script src="/public/plugins/jqBootstrapValidation.js"></script>
+<script src="/public/plugins/contact_me.js"></script>
+<!-- Video player-->
+<script src="/public/plugins/flowplayer/flowplayer.min.js"></script>
+<!-- Filter and sorting images-->
+<script src="/public/plugins/isotope/isotope.pkgd.min.js"></script>
+<script src="/public/plugins/isotope/imagesLoaded.js"></script>
+<!-- Progress numbers-->
+<script src="/public/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="/public/plugins/rendro-easy-pie-chart/waypoints.min.js"></script>
+<!-- Animations-->
+<script src="/public/plugins/scrollreveal/scrollreveal.min.js"></script>
+<!-- Ticker-->
+<script src="/public/plugins/jquery-easy-ticker/jquery.easy-ticker.min.js"></script>
+<script src="/public/js/active.js"></script>
+<script src="/public/js/home_script.js"></script>

@@ -1,0 +1,14 @@
+{
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "",
+
+    "database": "3.7",
+    "connectionLimit": 50
+  },
+  "pagination": {
+    "limit": 6
+  }
+}

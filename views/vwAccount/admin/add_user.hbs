@@ -1,0 +1,164 @@
+{{#section 'name'}}
+{{!-- {{#each authUser}} --}}
+{{username}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'img'}}
+{{!-- {{#each authUser}} --}}
+{{img}}
+{{!-- {{/each}} --}}
+{{/section}}
+{{#section 'js'}}
+{{!-- {{#each authUser}} --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        if($("#roleid").val()==4)
+            {
+                $("#cb-form").show();
+            }
+            else
+                $("#cb-form").hide();
+
+        $("#roleid").change(function () {
+            if($("#roleid").val()==4)
+            {
+                $("#cb-form").show();
+            }
+            else
+                $("#cb-form").hide();
+        });
+    });
+</script>
+{{!-- {{/each}} --}}
+{{/section}}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">{{#each data}}
+            <div class="title_left">
+                <h3>Add Account</h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <form method="POST" action="/account/admin/adduser" encType="multipart/form-data"
+                                class="form-horizontal form-label-left" >
+                                <div class="form-group">
+                                    <div class="profile_img">
+                                        <div id="crop-avatar">
+                                            <!-- Current avatar -->
+                                            <img class="img-responsive avatar-view"
+                                                src="../../../public/uploads/{{img}}" alt="Avatar"
+                                                title="Change the avatar">
+                                        </div>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="img" id="img">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã Thành Viên</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control"  readonly="readonly"
+                                            >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" name="email" 
+                                            >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">User Name </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" name="username" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Pseudonym </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" name="signature" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Role </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="js-filter  form-control " name="roleid" id="roleid">
+                                            <option value="1" {{#active_role roleid 1}}{{/active_role}}>admin</option>
+                                            <option value="2" {{#active_role roleid 2}}{{/active_role}}>subscriber
+                                            </option>
+                                            <option value="3" {{#active_role roleid 3}}{{/active_role}}>writer</option>
+                                            <option value="4" {{#active_role roleid 4}}{{/active_role}}>editor</option>
+                                        </select>
+                                        {{!-- <input type="text" class="form-control" name="username"
+                                            value="{{#role roleid}}{{/role}}"> --}}
+                                    </div>
+                                </div>
+                                <div class="form-group" id="cb-form">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Category </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <!-- Default inline 1-->
+                                        {{#each ../task}}
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input"{{#checkbox ischeck}}{{/checkbox}}  id="cb" name="cb" value="{{catid}}">
+                                            <label class="custom-control-label" for="defaultInline1">{{name}} </label>
+                                        </div>
+                                        {{/each}}
+                                        
+                                    </div>
+                                </div>
+                                <div class=" form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Birthday</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="datetime-local" class="form-control" id="birthday" name="birthday"
+                                            value="{{ birthday}}">
+                                    </div>
+                                </div>
+
+                                <div class=" form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Premium</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="datetime-local" class="form-control" id="time_premium"
+                                            name="time_premium" value="{{ time_premium}}">
+                                    </div>
+                                </div>
+                                {{#if ispremium}}
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Time</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" value="{{time}}" readonly="readonly">
+                                    </div>
+                                </div>
+                                {{/if}}
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Coin</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" value="{{coin}}" readonly="readonly">
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <a class="btn btn-primary" href="/account/admin/accounts" role="button">Back</a>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+</div>

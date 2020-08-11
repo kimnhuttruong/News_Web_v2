@@ -1,0 +1,18 @@
+<h1>Home</h1>
+
+<form id="myForm" name="myForm" action="/" method="post">
+  
+</form>
+{{#section 'js'}}
+    <script type = "text/javascript">
+      window.onload=function(){
+        setTimeout(function(){ submitform(); }, 1);
+
+        function submitform(){
+          document.forms["myForm"].submit();
+        }
+        
+    }
+    </script>
+    
+{{/section}}
