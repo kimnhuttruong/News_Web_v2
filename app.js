@@ -6,7 +6,7 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-app.use('/public', express.static('public'));
+app.use('/app/public', express.static('public'));
 
 // parse application/json
 app.use(bodyParser.json())
