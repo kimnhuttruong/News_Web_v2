@@ -6,7 +6,7 @@ const { compareSync } = require("bcrypt-nodejs");
 const router = express.Router();
 const bodyParser = require("body-parser");
 var multer = require('multer')
-var upload = multer({ dest: './public/uploads/' })
+var upload = multer({ dest: 'public/uploads/' })
 const timeupgrade = 2;
 router.get("/", restrict, async function (req, res) {
   var list = await userModel.single_id(req.session.authUser['id']);
