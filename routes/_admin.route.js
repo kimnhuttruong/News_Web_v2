@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt-nodejs');
 const imageModel = require("../models/images.model");
 var multer = require('multer');
 const router = express.Router();
-var upload = multer({ dest: '/app/public/uploads' });
+var upload = multer({ dest: '/public/uploads' });
 router.get('/', restrict, async function (req, res) {
 
     const data = await userModel.all();
