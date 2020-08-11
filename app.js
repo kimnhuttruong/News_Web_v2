@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 require('express-async-errors');
 const bodyParser = require('body-parser')
 const app = express();
@@ -6,7 +7,7 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-app.use('/app/public', express.static('public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // parse application/json
 app.use(bodyParser.json())
