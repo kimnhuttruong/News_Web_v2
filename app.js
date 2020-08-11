@@ -7,7 +7,7 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-app.use('/app/public', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // parse application/json
 app.use(bodyParser.json())
