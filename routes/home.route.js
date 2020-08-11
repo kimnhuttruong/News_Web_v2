@@ -13,10 +13,6 @@ const { urlencoded } = require('body-parser');
 const restrict = require('../middlewares/auth.mdw');
 const { length } = require('../models/user.model');
 // const newspaperModel = require('../models/newspaper.model');
-router.get('/', async function (req, res) {
-  res.send("xxxxxx");
-
-})
 
 
 router.get('/', async function (req, res) {

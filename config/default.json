@@ -1,12 +1,12 @@
 {
   "mysql": {
-    "host": "localhost",
+    "host": "mwgmw3rs78pvwk4e.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "port": 3306,
-    "user": "root",
-    "password": "",
+    "user": "l0q7fsvvq4j8zzfz",
+    "password": "el90ojwhf3nbawbq",
 
-    "database": "3.7",
-    "connectionLimit": 50
+    "database": "nyemamr7f2ruafl1"
+    
   },
   "pagination": {
     "limit": 6
