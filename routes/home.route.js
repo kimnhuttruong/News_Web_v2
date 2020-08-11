@@ -14,6 +14,12 @@ const restrict = require('../middlewares/auth.mdw');
 const { length } = require('../models/user.model');
 // const newspaperModel = require('../models/newspaper.model');
 router.get('/', async function (req, res) {
+  res.send("xxxxxx");
+
+})
+
+
+router.get('/', async function (req, res) {
   const listRight = await newsModel.cardviewright();
   const listPopular = await newsModel.popularnew();
   const timeNews = await newsModel.top10();
